@@ -12,6 +12,8 @@ function Nav() {
         setNav(!nav);
     }
 
+    const list = 'hover:border-b-2 border-[blue] cursor-pointer'
+
   return (
     <div className='flex fixed top-0 left-0 z-10 bg-white w-[100%] '>
        <Link to='/'> 
@@ -29,54 +31,45 @@ function Nav() {
             // initial={{y: 0}}
         >
         {nav ? (
-            <IoCloseOutline size={35} onClick={handleNav}/>
+            <IoCloseOutline size={35} onClick={handleNav} className='block lg:hidden'/>
         ) : (
-            <FaBars size={20} onClick={handleNav} className='mix-blend-multiply'/>
+            <FaBars size={20} onClick={handleNav} className='block lg:hidden mix-blend-multiply'/>
         )}
         </motion.div>
         <AnimatePresence>
+        <motion.div 
+            className='w-[140px] h-[60px] hidden lg:flex flex-grow list-none gap-8 justify-center items-center mix-blend-multiply'
+            initial={{y: -30}}
+            animate={{y: 0}}
+            transition={{duration: 1}}
+        >
+            <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
+            <li className={list}>Cashier</li>
+            <li className={list}>Reports</li>
+            <li className={list}>Market</li>
+            <li className={list}>Account setting</li>
+            <li className={list}>Message center</li>
+            <li className={list}>Stake</li>
+            <li className={list}>News</li>
+
+        </motion.div>
         {
             nav && (
-                <motion.div className='absolute bg-[white] p-9 top-[9vh] right-0 z-10'
+                <motion.div className='absolute bg-[white] p-9 lg:hidden top-[9vh] right-0 z-10'
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     transition={{duration: 1}}
                     exit={{ opacity: 0 }}
                     >
-                    <div className='list-none text-[20px] w-[100%] flex flex-col gap-8 font-bold text-[white]'>
-                    <Link to='/home'><motion.li className='p-2 bg-[rgb(0,128,0)] rounded-[9px]'
-                            initial={{x: 30}}
-                            animate={{x: 0}}
-                            transition={{duration: 1}}
-                            onClick={handleNav}
-                        >HOME</motion.li></Link>
-                        <Link to='/about'><motion.li className='p-2 bg-[rgb(0,128,0)] rounded-[9px]'
-                            initial={{x: 30}}
-                            animate={{x: 0}}
-                            transition={{duration: 1}}
-                            onClick={handleNav}
-                        >ABOUT US</motion.li></Link>
-                       <Link to='/media'> <motion.li
-                            className='p-2 bg-[rgb(0,128,0)] rounded-[9px]'
-                            initial={{x: 30}}
-                            animate={{x: 0}}
-                            transition={{duration: 1}}
-                            onClick={handleNav}
-                        >MEDIA</motion.li></Link>
-                        <Link to='/donation'><motion.li
-                            className='p-2 bg-[rgb(0,128,0)] rounded-[9px]'
-                            initial={{x: 30}}
-                            animate={{x: 0}}
-                            transition={{duration: 1}}
-                            onClick={handleNav}
-                        >DONATIONS</motion.li></Link>
-                        <Link to='/contact'><motion.li
-                            className='p-2 bg-[rgb(0,128,0)] rounded-[9px]'
-                            initial={{x: 30}}
-                            animate={{x: 0}}
-                            transition={{duration: 1}}
-                            onClick={handleNav}
-                        >CONTACT US</motion.li></Link>
+                    <div className='list-none text-[12px] text-[black] text-left w-[100%] flex flex-col gap-5 font-bold'>
+                    <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
+            <li className={list}>Cashier</li>
+            <li className={list}>Reports</li>
+            <li className={list}>Market</li>
+            <li className={list}>Account setting</li>
+            <li className={list}>Message center</li>
+            <li className={list}>Stake</li>
+            <li className={list}>News</li>
                     </div>
                 </motion.div>
             )

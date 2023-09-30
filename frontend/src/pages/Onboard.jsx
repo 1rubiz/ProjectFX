@@ -49,7 +49,7 @@ function Onboard() {
             </div>
         </div>
         {/* desktop and laptop ui */}
-        <div className='hidden lg:flex lg:flex-row lg:gap-[43vh] pt-[20vh] pl-[23vh] bg-[#0D1321] absolute top-0 left-0 min-h-screen w-screen'>
+        <div className='hidden lg:flex lg:flex-row lg:gap-[59vh] pt-[20vh] pl-[23vh] bg-[#0D1321] absolute top-0 left-0 min-h-screen w-screen'>
         <div className='text-[#F0EBD8] w-[40vh] pb-4 min-h-[40vh] bg-[#0D1321] opacity-80'
                     style={{boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset'}}>
                 <div className='text-[1.6vh]'>
@@ -75,7 +75,7 @@ function Onboard() {
                     exit={{opacity: 0}}
                     transition={{duration: 2}}
                     src={img2}
-                    className='absolute h-screen w-[80vh] z-4 top-0 left-0'
+                    className='absolute h-screen w-[50%] z-4 top-0 left-0'
                     />
                     <div className='font-serif text-[white] bg-opacity-10 bg-[white] text-[9vh] absolute top-[25vh] left-3'>
                     <Writer message='Welcome Back To'
@@ -100,15 +100,18 @@ function Onboard() {
                         exit={{opacity: 0}}
                         transition={{duration: 2}}
                         src={img}
-                        className='absolute h-screen w-[90vh] z-4 right-0 top-0'
+                        className='absolute h-screen w-[50%] z-4 right-0 top-0'
                         />
                 <div className='font-serif text-[white] bg-opacity-20 bg-[white] text-[9vh] absolute top-[25vh] right-3'>
-                    {/* <Writer message='Create An Account'
+                    {/* <Writer message='
+
                         time={100}
                         customClass='text-[white]'/> */}
                     {/* <Writer message='Let`s Trade'
                         time={300}
                         customClass='text-[white]'/> */}
+                        <p>Create An Account</p>
+                        <p>Let`s Trade</p>
                     </div>
                     <p 
                         className='text-[2.8vh] text-[white] absolute bottom-8 right-3 font-mono'

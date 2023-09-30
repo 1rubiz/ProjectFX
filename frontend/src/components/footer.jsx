@@ -46,7 +46,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-                <FaFacebook className='text-[green]' size={35}/>
+                <FaFacebook className='text-[blue]' size={35}/>
       </motion.div>
       <motion.div
       initial={{y: 60}}
@@ -54,7 +54,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaInstagram className='text-[green]' size={35}/>
+        <FaInstagram className='text-[blue]' size={35}/>
       </motion.div>
       <motion.div
       initial={{y: 50}}
@@ -62,7 +62,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaLinkedin className='text-[green]' size={35}/>
+        <FaLinkedin className='text-[blue]' size={35}/>
       </motion.div>
       <motion.div
       initial={{y: 40}}
@@ -70,7 +70,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaTwitter className='text-[green]' size={35}/>
+        <FaTwitter className='text-[blue]' size={35}/>
       </motion.div>
       <motion.div
       initial={{y: 30}}
@@ -78,7 +78,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaWhatsapp className='text-[green]' size={35}/>
+        <FaWhatsapp className='text-[blue]' size={35}/>
       </motion.div>
      
       </>

@@ -2,7 +2,9 @@ import React from 'react'
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div className='w-[100%] text-[white] bg-[#0D1321]'>
+      dashboard
+    </div>
   )
 }
 
