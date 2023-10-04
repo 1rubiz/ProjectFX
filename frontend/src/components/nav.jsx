@@ -33,7 +33,7 @@ function Nav() {
         {nav ? (
             <IoCloseOutline size={35} onClick={handleNav} className='block lg:hidden'/>
         ) : (
-            <FaBars size={20} onClick={handleNav} className='block lg:hidden mix-blend-multiply'/>
+            <FaBars size={20} onClick={handleNav} className='block text-[black] lg:hidden mix-blend-multiply'/>
         )}
         </motion.div>
         <AnimatePresence>
