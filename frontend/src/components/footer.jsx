@@ -16,7 +16,7 @@ function Footer() {
     transition={{duration: 5}}
     onClick={handleDisplay}
     className=' hover:border-2 hover:border-[green] rounded-full flex justify-center items-center w-[9vh]'>
-      <FaAngleDown className='text-[5vh]'/>
+      <FaAngleDown className='text-[5vh] text-[black]'/>
     </motion.div>
   ) : (
   <motion.div 
@@ -25,7 +25,7 @@ function Footer() {
     transition={{duration: 5}}
     onClick={handleDisplay}
     className='hover:border-2 hover:border-[green] rounded-full flex justify-center items-center'>
-    <FaGlobe className='text-[5vh]'/>
+    <FaGlobe className='text-[5vh] text-[black]'/>
     </motion.div>)
   return (
     <>
