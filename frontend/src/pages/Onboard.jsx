@@ -17,7 +17,7 @@ function Onboard() {
     const handleScreen = ()=>{
         setScreen(!screen)
     }
-    
+
     // bg-[#0D1321]
   return (
     <div>
@@ -42,7 +42,7 @@ function Onboard() {
                     ) : (
                     <div className='text-[1.6vh]'>
                         <Login/>
-                        Don't have an account with us? 
+                        Don't have an account with us?
                         <span onClick={handleChange} className='font-bold text-[1.9vh]'> Register</span>
                     </div>)
                 }
@@ -57,19 +57,19 @@ function Onboard() {
                 Already have an account ? <span onClick={handleScreen} className='font-bold text-[1.5vh] mt-3'>Login</span>
             </div>
         </div>
-            
+
         <div className='text-[#F0EBD8] w-[40vh] pb-4 min-h-[40vh] bg-[#0D1321] opacity-80'
                     style={{boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset'}}>
             <div className='text-[1.6vh]'>
                 <Login/>
-                Don't have an account with us? 
+                Don't have an account with us?
                 <span onClick={handleScreen} className='font-bold text-[1.5vh]'> Register</span>
             </div>
             </div>
             {
                 screen ? (
                     <>
-                    <motion.img 
+                    <motion.img
                     initial={{opacity: 0}}
                     animate={{opacity: 2}}
                     exit={{opacity: 0}}
@@ -85,16 +85,16 @@ function Onboard() {
                         time={300}
                         customClass='text-[white]'/>
                     </div>
-                    <p 
+                    <p
                         className='text-[3vh] text-[white] absolute bottom-8 left-3 font-mono'
-                    >Are You New Here 
-                    <span 
+                    >Are You New Here
+                    <span
                     onClick={handleScreen}
                     className='text-[3vh] text-[#0D1321] bg-opacity-40 hover:bg-opacity-70 bg-white'> Create An Account</span></p>
                     </>
                 ) : (
                     <>
-                        <motion.img 
+                        <motion.img
                         initial={{opacity: 0}}
                         animate={{opacity: 2}}
                         exit={{opacity: 0}}
@@ -102,7 +102,7 @@ function Onboard() {
                         src={img}
                         className='absolute h-screen w-[50%] z-4 right-0 top-0'
                         />
-                <div className='font-serif text-[white] bg-opacity-20 bg-[white] text-[9vh] absolute top-[25vh] right-3'>
+                <div className='font-serif text-[#F0EBD8] bg-opacity-20 bg-[white] text-[9vh] absolute top-[25vh] right-3'>
                     {/* <Writer message='
 
                         time={100}
@@ -113,10 +113,10 @@ function Onboard() {
                         <p>Create An Account</p>
                         <p>Let`s Trade</p>
                     </div>
-                    <p 
+                    <p
                         className='text-[2.8vh] text-[white] absolute bottom-8 right-3 font-mono'
-                    >Already Have An Account ? 
-                    <span 
+                    >Already Have An Account ?
+                    <span
                     onClick={handleScreen}
                     className='text-[3vh] text-[#0D1321] bg-opacity-40 hover:bg-opacity-70 bg-white'> Sign In</span></p>
                     </>

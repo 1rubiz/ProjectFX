@@ -16,8 +16,8 @@ function Nav() {
 
   return (
     <div className='flex fixed top-0 left-0 z-10 bg-white w-[100%] '>
-       <Link to='/'> 
-        <motion.div 
+       <Link to='/'>
+        <motion.div
             className='w-[140px] h-[60px] flex justify-center items-center gap-1 mix-blend-multiply'
             initial={{y: -30}}
             animate={{y: 0}}
@@ -26,7 +26,7 @@ function Nav() {
         <FaFire/> LitFX
         </motion.div>
         </Link>
-        <motion.div 
+        <motion.div
             className='absolute top-[3vh] right-9'
             // initial={{y: 0}}
         >
@@ -37,7 +37,7 @@ function Nav() {
         )}
         </motion.div>
         <AnimatePresence>
-        <motion.div 
+        <motion.div
             className='w-[140px] h-[60px] hidden lg:flex flex-grow list-none gap-8 justify-center items-center mix-blend-multiply'
             initial={{y: -30}}
             animate={{y: 0}}
@@ -46,11 +46,11 @@ function Nav() {
             <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
             <li className={list}>Cashier</li>
             <li className={list}>Reports</li>
-            <li className={list}>Market</li>
+            <Link to='/market'><li className={list}>Market</li></Link>
             <li className={list}>Account setting</li>
             <li className={list}>Message center</li>
             <li className={list}>Stake</li>
-            <li className={list}>News</li>
+            <Link to='/news'><li className={list}>News</li></Link>
 
         </motion.div>
         {
@@ -65,11 +65,11 @@ function Nav() {
                     <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
             <li className={list}>Cashier</li>
             <li className={list}>Reports</li>
-            <li className={list}>Market</li>
+            <Link to='/market'><li className={list}>Market</li></Link>
             <li className={list}>Account setting</li>
             <li className={list}>Message center</li>
             <li className={list}>Stake</li>
-            <li className={list}>News</li>
+            <Link to='/news'><li className={list}>News</li></Link>
                     </div>
                 </motion.div>
             )
