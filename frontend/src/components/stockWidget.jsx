@@ -15,7 +15,7 @@ const StockWidget = () => {
       isTransparent: false,
       showSymbolLogo: false,
       showFloatingTooltip: false,
-      width: '400',
+      width: '100%',
       height: '600',
       plotLineColorGrowing: 'rgba(41, 98, 255, 1)',
       plotLineColorFalling: 'rgba(41, 98, 255, 1)',
@@ -32,7 +32,9 @@ const StockWidget = () => {
     container.appendChild(script);
 
     return () => {
-      container.removeChild(script);
+      if (container.contains(script)) {
+              container.removeChild(script);
+            }
     };
   }, []);
 

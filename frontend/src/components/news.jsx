@@ -10,7 +10,7 @@ const NewsWidget = () => {
       colorTheme: 'dark',
       isTransparent: false,
       displayMode: 'regular',
-      width: '100%',
+      width: 480,
       height: 830,
       locale: 'en',
     });
@@ -19,7 +19,9 @@ const NewsWidget = () => {
     container.appendChild(script);
 
     return () => {
-      container.removeChild(script);
+      if (container.contains(script)) {
+              container.removeChild(script);
+            }
     };
   }, []);
 

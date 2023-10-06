@@ -5,6 +5,7 @@ const CryptoWidget = () => {
     const script = document.createElement('script');
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-screener.js';
     script.async = true;
+    script.id = 'crypto';
     script.innerHTML = JSON.stringify({
       width: '100%',
       height: 490,
@@ -14,12 +15,14 @@ const CryptoWidget = () => {
       colorTheme: 'dark',
       locale: 'en',
     });
-
+    // document.head.appendChild(script);
     const container = document.querySelector('.tradingview-widget-container__widget');
     container.appendChild(script);
 
     return () => {
-      container.removeChild(script);
+      if (container.contains(script)) {
+              container.removeChild(script);
+            }
     };
   }, []);
 

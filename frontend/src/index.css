@@ -59,6 +59,13 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.text-gradients {
+  background: linear-gradient(45deg, white, red);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

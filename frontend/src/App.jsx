@@ -17,9 +17,9 @@ function App() {
     <BrowserRouter>
       <Nav/>
       <Routes>
-        <Route path='/' element={<Onboard/>}/>
+        <Route path='/onboard' element={<Onboard/>}/>
         <Route path='/market' element={<Market/>} />
-        <Route path='/landing' element={<Landing/>} />
+        <Route path='/' element={<Landing/>} />
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/news' element={<News/>}/>
