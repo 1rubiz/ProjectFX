@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import logo from '/vite.svg';
 import fire from '/fire-logo.svg'
 
-function Nav() {
+function GuestNav() {
     const [nav, setNav]= useState(false);
     const handleNav = ()=>{
         setNav(!nav);
@@ -37,21 +37,17 @@ function Nav() {
             <FaBars size={20} onClick={handleNav} className='block text-[black] lg:hidden mix-blend-multiply'/>
         )}
         </motion.div>
-        <AnimatePresence key='1'>
+        <AnimatePresence key='0'>
         <motion.div
             className='w-[140px] h-[60px] hidden lg:flex flex-grow list-none gap-8 justify-center items-center mix-blend-multiply'
             initial={{y: -30}}
             animate={{y: 0}}
             transition={{duration: 1}}
         >
-            <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
-            <li className={list}>Cashier</li>
-            <li className={list}>Reports</li>
-            <Link to='/market'><li className={list}>Market</li></Link>
-            <li className={list}>Account setting</li>
-            <li className={list}>Message center</li>
-            <li className={list}>Stake</li>
-            <Link to='/news'><li className={list}>News</li></Link>
+            <Link to='/dashboard'><li className={list}>Home</li></Link>
+            <li className={list}>About</li>
+            <li className={list}>Contact Us</li>
+            <button className='bg-[#646cff] text-[white]'>Get started</button>
 
         </motion.div>
         {
@@ -63,14 +59,10 @@ function Nav() {
                     exit={{ opacity: 0 }}
                     >
                     <div className='list-none text-[12px] text-[black] text-left w-[100%] flex flex-col gap-5 font-bold'>
-                    <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
-            <li className={list}>Cashier</li>
-            <li className={list}>Reports</li>
-            <Link to='/market'><li className={list}>Market</li></Link>
-            <li className={list}>Account setting</li>
-            <li className={list}>Message center</li>
-            <li className={list}>Stake</li>
-            <Link to='/news'><li className={list}>News</li></Link>
+                    <Link to='/dashboard'><li className={list}>Home</li></Link>
+            <li className={list}>About</li>
+            <li className={list}>Contact Us</li>
+            <button className='bg-[#646cff] text-[white]'>Get started</button>
                     </div>
                 </motion.div>
             )
@@ -80,4 +72,4 @@ function Nav() {
   )
 }
 
-export default Nav
+export default GuestNav;

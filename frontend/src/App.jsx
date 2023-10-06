@@ -3,19 +3,26 @@ import './App.css'
 import {Routes, Route, BrowserRouter} from 'react-router-dom'
 import Nav from './components/nav';
 import Footer from './components/footer';
+import NavBar from './components/navbar.jsx';
 import Dashboard from './pages/Dashboard';
 import Onboard from './pages/Onboard';
 import Profile from './pages/Profile'
 import Landing from './pages/Landing';
 import Market from './pages/Market'
 import News from './pages/News'
+import AuthContext from './contexts/auth-context';
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const login =()=>{
+    console.log('request to login')
+  }
+  // <Nav/>
   return (
     <BrowserRouter>
-      <Nav/>
+    <AuthContext.Provider value={{status: false, login: login}}>
+      <NavBar/>
+    </AuthContext.Provider>
       <Routes>
         <Route path='/onboard' element={<Onboard/>}/>
         <Route path='/market' element={<Market/>} />
