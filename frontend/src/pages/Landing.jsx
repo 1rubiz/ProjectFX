@@ -4,7 +4,7 @@ import {FaFire} from 'react-icons/fa';
 import landing from '/landing3.jpg';
 import fire from '/fire-logo.svg'
 import About from '../components/about';
-
+import TaperWidget from '../components/taperWidget'
 
 export default function Landing() {
   return (
@@ -23,7 +23,7 @@ export default function Landing() {
           <button className='bg-[#646cff] text-[white]'>Get started</button>
         </div>
         <div className='mt-[4vh] mb-[2vh]'>
-
+          <TaperWidget/>
         </div>
         <About/>
       </div>
