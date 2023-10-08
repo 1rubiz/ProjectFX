@@ -21,7 +21,7 @@ export default function Landing() {
         <div className='text-[19px] p-4 mt-[5vh] text-white-900'>
           <p>Discover a world of of opportunities with LitFX.</p>
           <p className='text-[22px]'>Start trading today!</p>
-          <Link to='/onboarding'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
+          <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
         </div>
         <div className='mt-[4vh] mb-[2vh]'>
           <TaperWidget/>
