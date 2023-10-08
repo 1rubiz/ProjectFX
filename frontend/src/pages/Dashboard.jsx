@@ -13,7 +13,7 @@ function Dashboard() {
           <div className='mt-[10vh] flex flex-col-reverse md:flex-row justify-center md:gap-[25%] mb-2'>
                 <div className='text-[black] md:max-w-[47%]'>
                     <p className='text-white hover:text-[18px] font-bold'>Balance: $ 0.0</p>
-                    <div className='flex justify-center gap-3'>
+                    <div className='flex justify-center gap-3 text-white'>
                       <button>Deposit</button>
                       <button>Withdraw</button>
                       <button>Stake</button>
