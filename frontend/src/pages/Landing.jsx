@@ -23,7 +23,7 @@ export default function Landing() {
           <p className='text-[22px]'>Start trading today!</p>
           <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
         </div>
-        <div className='mt-[4vh] mb-[2vh]'>
+        <div className='mt-[6vh] mb-[2vh]'>
           <TaperWidget/>
         </div>
         <About/>
