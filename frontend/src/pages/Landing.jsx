@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 
 export default function Landing() {
   return (
-    <div className=' absolute top-0 left-0 min-h-screen w-[100%] z-[-5] text-[white] bg-[#0D1321]'>
+    <div className=' absolute top-0 left-0 min-h-screen w-[100%] z-[0] text-[white] bg-[#0D1321]'>
       <div className='mt-[10vh]'>
         <div>
             <div className='flex justify-left items-center'>
@@ -21,7 +21,7 @@ export default function Landing() {
         <div className='text-[19px] p-4 mt-[5vh] text-white-900'>
           <p>Discover a world of of opportunities with LitFX.</p>
           <p className='text-[22px]'>Start trading today!</p>
-          <Link to='/news'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
+          <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
         </div>
         <div className='mt-[4vh] mb-[2vh]'>
           <TaperWidget/>
