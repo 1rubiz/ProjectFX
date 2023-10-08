@@ -22,7 +22,7 @@ function Login() {
       labelText='Password' 
       placeholder='Password'
       labelFor='Password'/>
-    <Link to='/dashboard'> <button className='bg-[#3E5C76] hover:border-[white] font-bold text-[1.8vh] hover:border-2 w-[25vh] h-[5.5vh]'>LOGIN</button></Link>
+    <Link to='/dashboard'> <button className='bg-[#3E5C76] hover:border-[white] font-bold text-[1.8vh] text-white hover:border-2 w-[25vh] h-[5.5vh]'>LOGIN</button></Link>
     </motion.div>
   )
 }
