@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "backend": "nodemon server.js"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "this is the backend for eclat web app",
+  "main": "server.js",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eclatdevteam/eclatapp_backend.git"
+  },
+  "keywords": [
+    "eclat"
+  ],
+  "author": "boymeetsblockchain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eclatdevteam/eclatapp_backend/issues"
+  },
+  "homepage": "https://github.com/eclatdevteam/eclatapp_backend#readme"
+}
