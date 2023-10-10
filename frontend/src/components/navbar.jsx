@@ -8,7 +8,7 @@ const NavBar = ()=>{
  const auth = useContext(AuthContext)
   return(
     <>
-      {auth ? <Nav/> : <GuestNav/>}
+      {auth.status ? <Nav/> : <GuestNav/>}
     </>
   )
 }

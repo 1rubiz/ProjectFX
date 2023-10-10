@@ -37,8 +37,9 @@ function GuestNav() {
             <FaBars size={20} onClick={handleNav} className='block text-[black] lg:hidden mix-blend-multiply'/>
         )}
         </motion.div>
-        <AnimatePresence key='0'>
+        <AnimatePresence id='zero'>
         <motion.div
+            key='guest'
             className='w-[140px] h-[60px] hidden lg:flex flex-grow list-none gap-8 justify-center items-center mix-blend-multiply'
             initial={{y: -30}}
             animate={{y: 0}}
