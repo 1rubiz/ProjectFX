@@ -3,8 +3,6 @@ const colors = require('colors')
 const dotenv = require('dotenv').config()
 const mongoose = require('mongoose')
 const userRoute = require('./routes/userRoute')
-// const questionRoute = require('./routes/questionRoute')
-// const resultRoute = require('./routes/resultRoute')
 const cookieParser = require('cookie-parser')
 const cors = require ('cors')
 const PORT = process.env.PORT || 5000
@@ -18,7 +16,7 @@ const errorHandler = require('./middlewares/errorMiddleware')
     //origin: allowedOrigins,
     //credentials: true,
   //}));
-  app.use(cors());
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
@@ -34,9 +32,6 @@ app.use("/call", (req, res)=>{
     });
 // user route
 app.use('/api/users',userRoute)
-// question routes
-// app.use('/api/questions',questionRoute)
-// result routes
 
 //app.use('/api/users',resultRoute)
 mongoose
