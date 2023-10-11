@@ -8,7 +8,7 @@ export default function Landing() {
           <div className='text-[#F0EBD8] mb-6 font-serif text-[20px] md:text-[28px] lg:text-[33px] underline'>
             News Updates
           </div>
-            <div>
+            <div className='w-[100%]'>
               <NewsWidget/>
             </div>
           </div>

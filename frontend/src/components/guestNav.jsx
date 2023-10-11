@@ -45,10 +45,10 @@ function GuestNav() {
             animate={{y: 0}}
             transition={{duration: 1}}
         >
-            <Link to='/dashboard'><li className={list}>Home</li></Link>
+            <Link to='/'><li className={list}>Home</li></Link>
             <li className={list}>About</li>
             <li className={list}>Contact Us</li>
-            <button className='bg-[#646cff] text-[white]'>Get started</button>
+           <Link to='/onboard'> <button className='bg-[#646cff] text-[white]'>Get started</button></Link>
 
         </motion.div>
         {
@@ -60,10 +60,10 @@ function GuestNav() {
                     exit={{ opacity: 0 }}
                     >
                     <div className='list-none text-[12px] text-[black] text-left w-[100%] flex flex-col gap-5 font-bold'>
-                    <Link to='/dashboard'><li className={list}>Home</li></Link>
+                    <Link to='/'><li className={list}>Home</li></Link>
             <li className={list}>About</li>
             <li className={list}>Contact Us</li>
-            <button className='bg-[#646cff] text-[white]'>Get started</button>
+            <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
                     </div>
                 </motion.div>
             )

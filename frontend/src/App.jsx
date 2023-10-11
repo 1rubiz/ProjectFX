@@ -14,15 +14,17 @@ import AuthContext from './contexts/auth-context';
 
 function App() {
   const [count, setCount] = useState(0)
+  const [status, setStatus] = useState(false)
+  const [user, setUser] = useState(null)
   const login =()=>{
     console.log('request to login')
   }
+        // <AuthContext.Provider value={{login: setStatus, setUser:setUser }}>
   // <Nav/>
   return (
     <BrowserRouter>
-    <AuthContext.Provider value={{status: false, login: login}}>
+    <AuthContext.Provider value={{user: user, setUser: setUser}}>
       <NavBar/>
-    </AuthContext.Provider>
       <Routes>
         <Route path='/onboard' element={<Onboard/>}/>
         <Route path='/market' element={<Market/>} />
@@ -32,6 +34,7 @@ function App() {
         <Route path='/news' element={<News/>}/>
       </Routes>
       <Footer/>
+    </AuthContext.Provider>
     </BrowserRouter>
   )
 }

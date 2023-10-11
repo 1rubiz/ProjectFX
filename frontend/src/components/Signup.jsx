@@ -56,7 +56,7 @@ if(check){
   console.log(form)
   // setLoader(true);
     try {
-       const response =  await axios.post("https://project-fx-server.vercel.app/api/users/register",form)
+       const response =  await axios.post("https://projectfx-server.onrender.com/api/users/register",form)
        if(response.status === 201){
         // navigate('/login')
         console.log('signup success');

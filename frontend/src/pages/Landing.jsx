@@ -31,7 +31,7 @@ export default function Landing() {
         </div>
         <About/>
       </div>
-      <img src={landing} className='absolute top-0 left-0 z-[-1] opacity-70 h-[600px] w-[100%]'/>
+      <img src={landing} className='absolute mix-blend-multiply top-0 left-0 z-[-1] opacity-70 h-[600px] w-[100%]'/>
       </div> 
 
       <div className='hidden md:block lg:block'>

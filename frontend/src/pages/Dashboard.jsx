@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Link} from 'react-router-dom';
 import {FaUser, FaWhatsapp} from 'react-icons/fa';
 import TradingViewWidget from '../components/advanceWidget';
@@ -6,8 +6,11 @@ import WatchListWidget from '../components/watchListWidget'
 import TaperWidget from '../components/taperWidget';
 import NewsWidget from '../components/news'
 import chart from '/img4.jpg'
+import UserContext from '../contexts/auth-context'
 
 function Dashboard() {
+     const {user} = useContext(UserContext);
+     console.log(user)
   return (
     <div className=' absolute top-0 left-0 min-h-screen w-[100%] text-[white] bg-[#0D1321]'>
           <div className='mt-[10vh] flex flex-col-reverse md:flex-row justify-center md:gap-[25%] mb-2'>
@@ -24,7 +27,7 @@ function Dashboard() {
                   <div className='border-[white] border-2 rounded-full p-2'>
                     <Link to='/profile'><FaUser className='text-[white] text-[25px]'/></Link>
                   </div>
-                  <p>qwerty@gmail.com</p>
+                  <p>{(user !== null) && user.email}</p>
                 </div>
           </div>
           <div className='h-[500px] w-[100%]'>

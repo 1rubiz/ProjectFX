@@ -1,14 +1,14 @@
 import React, {useContext} from 'react';
-import AuthContext from '../contexts/auth-context';
+import UserContext from '../contexts/auth-context';
 import Nav from './nav'
 import GuestNav from './guestNav';
 
 
 const NavBar = ()=>{
- const auth = useContext(AuthContext)
+ const { user } = useContext(UserContext);
   return(
     <>
-      {auth.status ? <Nav/> : <GuestNav/>}
+      {(user !== null) ? <Nav/> : <GuestNav/>}
     </>
   )
 }

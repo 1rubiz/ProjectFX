@@ -22,7 +22,7 @@ const Form = () => {
         (result) => {
           console.log(result.text);
           toast.success('Email sent succesfully...');
-          navigate('/payment');
+          navigate('/');
         },
         (error) => {
           console.log(error.text);
@@ -43,7 +43,7 @@ const Form = () => {
       <form
         ref={form}
         onSubmit={sendEmail}>
-        {/*<Toaster/>*/}
+        <Toaster/>
       <Input 
       customClass='bg-[#c5fbbd] mb-3 focus:bg-[white] w-[25vh] h-[5.5vh]'
       labelText='Email' 

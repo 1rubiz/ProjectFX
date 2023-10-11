@@ -10,7 +10,7 @@ const NewsWidget = () => {
       colorTheme: 'dark',
       isTransparent: false,
       displayMode: 'regular',
-      width: 480,
+      width: '100%',
       height: 830,
       locale: 'en',
     });

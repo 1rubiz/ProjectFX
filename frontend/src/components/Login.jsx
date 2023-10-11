@@ -1,11 +1,14 @@
 import React from 'react'
 import Input from './Input'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
 import axios from 'axios';
+import UserContext from '../contexts/auth-context'
 
 function Login() {
+  const navigate = useNavigate();
+   const {setUser} = useContext(UserContext);
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -40,9 +43,15 @@ if(check){
 const handleSubmit = async ()=>{
   console.log(form);
   try {
-       const response =  await axios.post("https://project-fx-server.vercel.app/api/users/login",form)
-       if(response.status === 201){
+       const response =  await axios.post("https://projectfx-server.onrender.com/api/users/login",form)
+       if(response.status === 200){
         console.log('success');
+        console.log(response.data)
+        localStorage.setItem('token', response.data.token);
+        setUser({
+          email: response.data.email
+        })
+        navigate('/dashboard')
        }
        if(response.status === 400){
         console.log(response);
