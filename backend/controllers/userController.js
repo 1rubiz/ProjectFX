@@ -79,27 +79,25 @@ res.cookie("token",token,{
 
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
-    console.log(email, password)
-    res.sendStatus(200);
-    //   const user = await User.findOne({ email })
+      const user = await User.findOne({ email })
   
-    // // Check user and passwords match
-    // if (user && (await bcrypt.compare(password, user.password))) {
-    //   res.cookie('token', generateToken(user._id), {
-    //     expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Cookie expiration time (30 days)
-    //     httpOnly: true, // Cookie is only accessible through HTTP(S)
-    //     secure: true, // Cookie is only sent over HTTPS
-    //   });
-    //   res.status(200).json({
-    //     _id: user._id,
-    //     name: user.fullname,
-    //     email: user.email,
-    //     token:generateToken(user._id)
-    //   })
-    // } else {
-    //   res.status(401)
-    //   throw new Error('Invalid credentials')
-    // }
+    // Check user and passwords match
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.cookie('token', generateToken(user._id), {
+        expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Cookie expiration time (30 days)
+        httpOnly: true, // Cookie is only accessible through HTTP(S)
+        secure: true, // Cookie is only sent over HTTPS
+      });
+      res.status(200).json({
+        _id: user._id,
+        name: user.fullname,
+        email: user.email,
+        token:generateToken(user._id)
+      })
+    } else {
+      res.status(401)
+      throw new Error('Invalid credentials')
+    }
   })
 
 
