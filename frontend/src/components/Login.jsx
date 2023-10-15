@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import UserContext from '../contexts/auth-context'
+import Loading from './loading'
 
 function Login() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ function Login() {
     email: '',
     password: ''
   })
+  const [loading, setLoading] = useState(false)
 const [valid, setValid] =useState(false);
    const {email, password} = form;
 // function to check if all the input hve been filled
@@ -41,6 +43,7 @@ if(check){
 
 const handleSubmit = async ()=>{
   try {
+    setLoading(true);
        const response =  await axios.post("https://projectfx-server.onrender.com/api/users/login",form)
       // const response =  await axios.post("http://localhost:3000/api/users/login",form)
        if(response.status === 200){
@@ -53,14 +56,17 @@ const handleSubmit = async ()=>{
           email: response.data.email,
           user: response.data.name
         })
+        setLoading(false)
         navigate('/dashboard')
        }
        if(response.status === 400){
         console.log(response);
+        setLoading(false)
         // console.log(response.json())
        }
     } catch (error) {
       // setLoader(false);
+      setLoading(false)
     const {response} = error;
      console.log(error)
      console.log(response);
@@ -79,6 +85,9 @@ const handleSubmit = async ()=>{
     exit={{opacity: 0}}
     transition={{duration: 2}}
     className='flex flex-col justify-center items-center pt-16 mb-3'>
+    <div className={`${loading ? 'block' : 'hidden'}`}>
+    <Loading/>
+    </div>
       <Input 
       customClass='bg-[#c5fbbd] mb-3 focus:bg-[white] lg:w-[40vh] w-[25vh] h-[5.5vh]'
       labelText='Email' 

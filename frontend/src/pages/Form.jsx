@@ -1,15 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Input from '../components/Input'
+import Loading from '../components/loading';
+
 const Form = () => {
+  const [loading, setLoading] = useState(false)
   const form = useRef();
   const navigate = useNavigate();
   const sendEmail = (e) => {
     e.preventDefault();
-
+    setLoading(true)
     console.log(form);
     emailjs
       .sendForm(
@@ -23,9 +26,11 @@ const Form = () => {
           console.log(result.text);
           toast.success('Email sent succesfully...');
           navigate('/');
+          setLoading(false);
         },
         (error) => {
           console.log(error.text);
+          setLoading(false)
         }
       );
 
@@ -34,6 +39,9 @@ const Form = () => {
 
   return (
       <div>
+      <div className={`${loading ? 'block' : 'hidden'}`}>
+    <Loading/>
+    </div>
       <div id='contact' className='text-[27px]'>Co<span className='border-b-2 border-b-[orange]'>ntact U</span>s</div>
         <motion.div 
     initial={{opacity: 0}}

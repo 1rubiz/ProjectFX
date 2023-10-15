@@ -4,11 +4,13 @@ import { useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import axios from 'axios';
+import Loading from './loading'
 
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConfirmPassword] = useState(false);
   const [matchPassword, setMatchPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     fullname: "",
@@ -54,7 +56,7 @@ if(check){
   const handleSubmit = async(e) => {
   e.preventDefault()
   console.log(form)
-  // setLoader(true)
+  setLoading(true)
     try {
        // const response =  await axios.post("http://localhost:3000/api/users/register",form)
        const response =  await axios.post("https://projectfx-server.onrender.com/api/users/register",form)
@@ -68,13 +70,15 @@ if(check){
         await localStorage.setItem('phone', response.data.phone);
         navigate('/dashboard')
         console.log('signup success');
+        setLoading(false)
        }
        if(response.status === 400){
         console.log(response);
         console.log(response.json())
+        setLoading(false);
        }
     } catch (error) {
-      // setLoader(false);
+      setLoading(false);
     const {response} = error;
      console.log(error)
      console.log(response);
@@ -102,6 +106,9 @@ if(check){
     exit={{opacity: 0}}
     transition={{duration: 2}}
     className='flex flex-col justify-center items-center gap-0 mb-3 pt-2'>
+    <div className={`${loading ? 'block' : 'hidden'}`}>
+    <Loading/>
+    </div>
       <Input 
       customClass='bg-[#c5fbbd] focus:bg-[white] lg:w-[40vh] w-[25vh] h-[5.5vh] mb-1'
       labelText='Fullname' 
