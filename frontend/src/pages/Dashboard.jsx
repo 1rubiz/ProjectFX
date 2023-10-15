@@ -39,10 +39,10 @@ function Dashboard() {
           <div className='mt-[10vh] flex flex-col-reverse md:flex-row justify-center md:gap-[25%] mb-2'>
                 <div className='text-[black] md:max-w-[47%]'>
                     <p className='text-white hover:text-[18px] font-bold'>Balance: $ 0.0</p>
-                    <div className='flex justify-center gap-3 text-[black] bg-white'>
-                      <button>Deposit</button>
-                      <button>Withdraw</button>
-                      <button>Stake</button>
+                    <div className='flex justify-center gap-3 text-[black]'>
+                      <button className="bg-white">Deposit</button>
+                      <button className="bg-white >Withdraw</button>
+                      <button className="bg-white >Stake</button>
                     </div>
                 </div>
                 <Toaster/>
