@@ -71,7 +71,7 @@ const Form = () => {
       <textarea
       name='name'
       placeholder='Email body....'
-      className='w-[100%] h-[15vh] pl-3'
+      className='w-[100%] min-h-[15vh] pl-3 text-white border-2 border-white'
       />
     <button className='bg-[#3E5C76] hover:border-[white] font-bold text-[1.8vh] text-white hover:border-2 w-[25vh] lg:w-[45%] h-[5.5vh]'>Submit</button>
     </form>

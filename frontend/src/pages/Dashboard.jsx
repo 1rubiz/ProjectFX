@@ -41,8 +41,8 @@ function Dashboard() {
                     <p className='text-white hover:text-[18px] font-bold'>Balance: $ 0.0</p>
                     <div className='flex justify-center gap-3 text-[black]'>
                       <button className="bg-white">Deposit</button>
-                      <button className="bg-white >Withdraw</button>
-                      <button className="bg-white >Stake</button>
+                      <button className="bg-white" >Withdraw</button>
+                      <button className="bg-white" >Stake</button>
                     </div>
                 </div>
                 <Toaster/>
