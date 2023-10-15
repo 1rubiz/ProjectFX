@@ -5,8 +5,10 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import axios from 'axios';
 import Loading from './loading'
+import {useNavigate} from 'react-router-dom';
 
 function Signup() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConfirmPassword] = useState(false);
   const [matchPassword, setMatchPassword] = useState(false);

@@ -19,6 +19,7 @@ function Nav() {
     const logout = ()=>{
         localStorage.clear();
         setUser(!user);
+        window.location.reload();
         navigate('/');
     }
     const list = 'hover:border-b-2 border-[blue] cursor-pointer'

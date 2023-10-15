@@ -67,14 +67,13 @@ function Onboard() {
             </div>
             </div>
             {
-                screen ? (
+                !screen ? (
                     <>
                     <AnimatePresence>
                     <motion.div
                     initial={{opacity: 0}}
                     animate={{opacity: 2}}
-                    exit={{y: -100}}
-                    transition={{duration: 2}}
+                    exit={{opacity: 0}}
                     key='login'
                     className='bg-[#0D1321] absolute h-screen w-[50%] z-4 top-0 left-0 opacity-80'
                     />
@@ -108,7 +107,6 @@ function Onboard() {
                         initial={{opacity: 0}}
                         animate={{opacity: 2}}
                         exit={{opacity: 0}}
-                        transition={{duration: 1}}
                         key='signup'
                         className='bg-[#0D1321] absolute h-screen w-[50%] z-4 right-0 top-0 opacity-90'
                         />

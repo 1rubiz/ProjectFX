@@ -9,6 +9,7 @@ import Loading from './loading'
 
 function Login() {
   const navigate = useNavigate();
+  const [errs, setErr] = useState('')
    const {setUser} = useContext(UserContext);
   const [form, setForm] = useState({
     email: '',
@@ -71,7 +72,7 @@ const handleSubmit = async ()=>{
      console.log(error)
      console.log(response);
      if(response.status === 401){
-      console.log('error in credentials');
+      setErr(response.data);
      }
     }
 
@@ -103,6 +104,7 @@ const handleSubmit = async ()=>{
       handleChange={handleChange} 
       placeholder='Password'
       labelFor='Password'/>
+      <div className='text-[yellow] text-[13px]'>{errs}</div>
     <button onClick={handleSubmit} disabled={!valid} className='bg-[#646cff] hover:border-[white] font-bold text-[1.8vh] text-white hover:border-2 lg:w-[40vh] w-[25vh] h-[5.5vh]'>LOGIN</button>
     </motion.div>
   )
