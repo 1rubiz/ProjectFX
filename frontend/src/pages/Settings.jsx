@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import ChangePassword from '../components/changepassword'
+import ChangePassword from '../components/changePassword';
 import Verification from '../components/verification';
 import Profile from '../components/profile'
 
