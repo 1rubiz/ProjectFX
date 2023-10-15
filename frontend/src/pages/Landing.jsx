@@ -33,7 +33,7 @@ export default function Landing() {
 
       {/*tablet and deskop view*/}
       <div className='hidden md:block lg:block'>
-          <div className='mt-[10vh] lg:ml-3 lg:mt-[18vh]'>
+          <div className='mt-[10vh] lg:ml-3 md:mt-[25vh] lg:mt-[28vh]'>
               <div className='w-[60%]'>
                   <div className='flex justify-left items-center'>
                     <img src={fire} className='h-[80px]'/>
@@ -48,7 +48,7 @@ export default function Landing() {
                 <Link to='/onboard'><button className='bg-[#646cff] text-[white] w-[50%]'>Get started</button></Link>
               </div>
         </div>
-        <img src={landing} className='absolute top-0 right-0 z-[-1] h-[40vh] lg:h-[60vh] w-[50%] lg:w-[57%] blur-[2px]'/>
+        <img src={landing} className='absolute top-0 right-0 z-[-1] h-[40vh] md:h-[70vh] lg:h-[70vh] w-[50%] lg:w-[57%] blur-[1px]'/>
       </div>
 
       <div className='mt-[6vh] mb-[2vh]'>

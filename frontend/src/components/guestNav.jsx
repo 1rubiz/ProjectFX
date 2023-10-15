@@ -22,7 +22,7 @@ function GuestNav() {
     const list = 'hover:border-b-2 border-[blue] cursor-pointer'
 
   return (
-    <div className='flex fixed top-0 left-0 z-10 bg-white w-[100%] '>
+    <div id='home' className='flex fixed top-0 left-0 z-10 bg-white w-[100%] '>
        <Link to='/'>
         <motion.div
             className='w-[140px] h-[60px] flex justify-center items-center gap-1 mix-blend-multiply'
@@ -52,8 +52,8 @@ function GuestNav() {
             transition={{duration: 1}}
         >
             <Link to='/'><li className={list}>Home</li></Link>
-            <li className={list}>About</li>
-           <Link to=''> <li className={list}>Contact Us</li></Link>
+           <Link> <li className={list} onClick={()=> handleScroll('#about')}>About</li></Link>
+           <Link to=''> <li className={list} onClick={()=> handleScroll('#contact')}>Contact Us</li></Link>
            <Link to='/onboard'> <button className='bg-[#646cff] text-[white]'>Get started</button></Link>
 
         </motion.div>

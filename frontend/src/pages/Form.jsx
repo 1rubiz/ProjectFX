@@ -58,18 +58,18 @@ const Form = () => {
       <Input 
       customClass='bg-[#c5fbbd] mb-3 focus:bg-[white] w-[25vh] h-[5.5vh]'
       labelText='Email' 
-      name='email'
-      placeholder='Email'
-      labelFor='Email'/>
+      name='user_name'
+      placeholder='Full Name'
+      labelFor='Name'/>
             
       <Input 
       customClass='bg-[#c5fbbd] mb-2 focus:bg-[white] w-[25vh] h-[5.5vh]'
-      labelText='Password'
-      name='password'
-      placeholder='Password'
-      labelFor='Password'/>
+      labelText='Email'
+      name='user_email'
+      placeholder='Email'
+      labelFor='Email'/>
       <textarea
-      name='body'
+      name='name'
       placeholder='Email body....'
       className='w-[100%] h-[15vh] pl-3'
       />
