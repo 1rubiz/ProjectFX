@@ -20,6 +20,7 @@ function Nav() {
         localStorage.clear();
         setUser(!user);
         window.location.reload();
+        window.location.href='/'
         navigate('/');
     }
     const list = 'hover:border-b-2 border-[blue] cursor-pointer'
