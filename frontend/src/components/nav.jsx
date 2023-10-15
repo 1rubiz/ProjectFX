@@ -1,18 +1,26 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FaBars, FaFire } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '/vite.svg';
 import fire from '/fire-logo.svg'
+import UserContext from '../contexts/auth-context'
 
 function Nav() {
+    const navigate = useNavigate();
+    const {setUser, user} = useContext(UserContext);
     const [nav, setNav]= useState(false);
     const handleNav = ()=>{
         setNav(!nav);
     }
-
+    const email = localStorage.getItem('email');
+    const logout = ()=>{
+        localStorage.clear();
+        setUser(!user);
+        navigate('/');
+    }
     const list = 'hover:border-b-2 border-[blue] cursor-pointer'
 
   return (
@@ -28,7 +36,7 @@ function Nav() {
         </motion.div>
         </Link>
         <motion.div
-            className='absolute top-[3vh] right-9'
+            className='absolute top-[3vh] md:top-[1.8vh] right-9'
             // initial={{y: 0}}
         >
         {nav ? (
@@ -46,32 +54,36 @@ function Nav() {
             transition={{duration: 1}}
         >
             <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
-            <li className={list}>Cashier</li>
-            <li className={list}>Reports</li>
+            <Link to='/cashier'><li className={list}>Cashier</li></Link>
+            <Link to='/report'><li className={list}>Reports</li></Link>
             <Link to='/market'><li className={list}>Market</li></Link>
-            <li className={list}>Account setting</li>
-            <li className={list}>Message center</li>
+            <Link to='/settings'><li className={list}>Account setting</li></Link>
+            <Link to='/inbox'><li className={list}>Inbox</li></Link>
             <li className={list}>Stake</li>
             <Link to='/news'><li className={list}>News</li></Link>
+            <button onClick={logout} className='bg-[red] text-[white]'>Log Out</button>
 
         </motion.div>
+    {/*mobile nav*/}
         {
             nav && (
-                <motion.div className='absolute bg-[white] p-9 lg:hidden top-[9vh] right-0 z-10'
+                <motion.div className='absolute bg-[white] p-9 lg:hidden top-[9vh] md:top-[5.4vh] right-0 z-10'
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     transition={{duration: 1}}
                     exit={{ opacity: 0 }}
                     >
                     <div className='list-none text-[12px] text-[black] text-left w-[100%] flex flex-col gap-5 font-bold'>
+                    <li className='underline text-[16px] font-bold'>{email}</li>
                     <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
-            <li className={list}>Cashier</li>
-            <li className={list}>Reports</li>
+            <Link to='/cashier'><li className={list}>Cashier</li></Link>
+            <Link to='/report'><li className={list}>Reports</li></Link>
             <Link to='/market'><li className={list}>Market</li></Link>
-            <li className={list}>Account setting</li>
-            <li className={list}>Message center</li>
+            <Link to='/settings'><li className={list}>Account setting</li></Link>
+            <Link to='/inbox'><li className={list}>Inbox</li></Link>
             <li className={list}>Stake</li>
             <Link to='/news'><li className={list}>News</li></Link>
+            <button onClick={logout} className='bg-[red] text-[white]'>Log Out</button>
                     </div>
                 </motion.div>
             )

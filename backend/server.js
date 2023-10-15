@@ -27,11 +27,13 @@ app.use(errorHandler)
 app.use(cookieParser())
 // routes
 app.use("/call", (req, res)=>{
-  console.log(req.body)
+  // console.log(req.body)
+    console.log(req.cookies.token);
     res.sendStatus(200)
     });
 // user route
 app.use('/api/users',userRoute)
+
 
 //app.use('/api/users',resultRoute)
 mongoose

@@ -54,11 +54,19 @@ if(check){
   const handleSubmit = async(e) => {
   e.preventDefault()
   console.log(form)
-  // setLoader(true);
+  // setLoader(true)
     try {
+       // const response =  await axios.post("http://localhost:3000/api/users/register",form)
        const response =  await axios.post("https://projectfx-server.onrender.com/api/users/register",form)
        if(response.status === 201){
-        // navigate('/login')
+        
+        console.log(response.data)
+        await localStorage.setItem('email', response.data.email);
+        await localStorage.setItem('name', response.data.name);
+        await localStorage.setItem('clientsideID', response.data._id);
+        await localStorage.setItem('nationality', response.data.nationality);
+        await localStorage.setItem('phone', response.data.phone);
+        navigate('/dashboard')
         console.log('signup success');
        }
        if(response.status === 400){

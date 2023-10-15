@@ -34,15 +34,18 @@ const Form = () => {
 
   return (
       <div>
+      <div id='contact' className='text-[27px]'>Co<span className='border-b-2 border-b-[orange]'>ntact U</span>s</div>
         <motion.div 
     initial={{opacity: 0}}
-    animate={{opacity: 2}}
+    whileInView={{opacity: 2}}
     exit={{opacity: 0}}
     transition={{duration: 2}}
-    className='flex flex-col justify-center items-center pt-16 mb-3'>
+    className='flex flex-col justify-center items-center p-5 mb-8'>
       <form
         ref={form}
-        onSubmit={sendEmail}>
+        onSubmit={sendEmail}
+        className='lg:block lg:w-[65%]'
+        >
         <Toaster/>
       <Input 
       customClass='bg-[#c5fbbd] mb-3 focus:bg-[white] w-[25vh] h-[5.5vh]'
@@ -60,8 +63,9 @@ const Form = () => {
       <textarea
       name='body'
       placeholder='Email body....'
+      className='w-[100%] h-[15vh] pl-3'
       />
-    <button className='bg-[#3E5C76] hover:border-[white] font-bold text-[1.8vh] text-white hover:border-2 w-[25vh] h-[5.5vh]'>LOGIN</button>
+    <button className='bg-[#3E5C76] hover:border-[white] font-bold text-[1.8vh] text-white hover:border-2 w-[25vh] lg:w-[45%] h-[5.5vh]'>Submit</button>
     </form>
     </motion.div>
       </div>

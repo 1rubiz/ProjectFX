@@ -13,8 +13,7 @@ function Login() {
     email: '',
     password: ''
   })
-
-    const [valid, setValid] =useState(false);
+const [valid, setValid] =useState(false);
    const {email, password} = form;
 // function to check if all the input hve been filled
   const formCheck= (obj)=>{
@@ -41,15 +40,18 @@ if(check){
 };
 
 const handleSubmit = async ()=>{
-  console.log(form);
   try {
        const response =  await axios.post("https://projectfx-server.onrender.com/api/users/login",form)
+      // const response =  await axios.post("http://localhost:3000/api/users/login",form)
        if(response.status === 200){
         console.log('success');
         console.log(response.data)
-        localStorage.setItem('token', response.data.token);
-        setUser({
-          email: response.data.email
+        await localStorage.setItem('email', response.data.email);
+        await localStorage.setItem('name', response.data.name);
+        await localStorage.setItem('clientsideID', response.data._id);
+        await setUser({
+          email: response.data.email,
+          user: response.data.name
         })
         navigate('/dashboard')
        }

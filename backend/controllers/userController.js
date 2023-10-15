@@ -18,21 +18,18 @@ const registerUser =asyncHandler(async(req,res)=>{
     const {fullname,email,password,phone, nationality}= req.body
    // Validation
    if (!fullname || !email || !password || !phone || !nationality) {
-     res.status(400)
-     throw new Error('Please include all fields')
+     res.send('Please include all fields').status(400)
    }
       // Find if user already exists
       const userExists = await User.findOne({ email })
    
       if (userExists) {
-        res.status(400)
-        throw new Error('User already exists')
+        res.send('User already exists').status(400)
       }
 
       const numberExists = await User.findOne({phone})
       if (numberExists) {
-        res.status(400)
-        throw new Error('Phone already exists')
+        res.send('Phone already exists').status(400)
       }
       // Hash password
     const salt = await bcrypt.genSalt(10)
@@ -66,8 +63,7 @@ res.cookie("token",token,{
           token
         })
       } else {
-        res.status(400)
-        throw new Error('Invalid user data')
+        res.status(400).send('Invalid user data')
       }
  })
 
@@ -85,18 +81,16 @@ const loginUser = asyncHandler(async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
       res.cookie('token', generateToken(user._id), {
         expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Cookie expiration time (30 days)
-        httpOnly: true, // Cookie is only accessible through HTTP(S)
-        secure: true, // Cookie is only sent over HTTPS
+        // httpOnly: true, // Cookie is only accessible through HTTP(S)
+        // secure: true, // Cookie is only sent over HTTPS
       });
       res.status(200).json({
         _id: user._id,
         name: user.fullname,
         email: user.email,
-        token:generateToken(user._id)
       })
     } else {
-      res.status(401)
-      throw new Error('Invalid credentials')
+      res.status(401).send('User name or password is incorrect')
     }
   })
 
@@ -119,14 +113,12 @@ const loginUser = asyncHandler(async (req, res) => {
   
     // Check if user exists
     if (!user) {
-      res.status(400);
-      throw new Error("User not found, please sign up");
+      res.status(400).send("User not found, please sign up");
     }
   
     // Validate password
     if (!oldPassword || !password) {
-      res.status(400);
-      throw new Error("Please provide both the old password and new password");
+      res.status(400).send("Please provide both the old password and new password");
     }
   
     // Check if the old password matches the password in the database
@@ -152,7 +144,7 @@ const loginUser = asyncHandler(async (req, res) => {
  const getUser = asyncHandler(async(req,res)=>{
   const user = await User.findById(req.user._id)
   if(user){
-    const { _id, fullname, email, photo, phone, } = user;
+    const { _id, fullname, email, phone, } = user;
     res.status(200).json({
       _id,
       fullname,

@@ -8,7 +8,7 @@ export default function Landing() {
   const [screens, setScreen] = useState('1');
   const text = (screens === '1') ? 'Crypto Currency Market' : ((screens === '2') ? 'Forex Market' : ((screens === '3') ? 'Stock Market' : 'Error'))
   const display = (screens === '1') ? <CryptoWidget/> : ((screens === '2') ? <ForexWidget/> : ((screens === '3') ? <StockWidget/> : 'Error'))
-  const lists = 'mx-2 hover:cursor-pointer hover:border-b-2 border-[#F0EBD8]';
+  const lists = 'mx-2 hover:cursor-pointer hover:border-b-2 border-[#F0EBD8] p-2 md:p-4 lg:p-3 font-semibold';
   const handleSwitch = (e)=>{
     setScreen(e.target.id)
   }
@@ -19,9 +19,9 @@ export default function Landing() {
           <div className='mt-[10vh] mb-2 text-[15px]'>
             <div className='list-none flex justify-evenly items-center mb-5'>
               <ul className='flex gap-8'>
-                <li className={lists} id='1' onClick={handleSwitch}>Crypto Currency</li>
-                <li className={lists} id='2' onClick={handleSwitch}> Forex</li>
-                <li className={lists} id='3' onClick={handleSwitch}> Stock</li>
+                <li className={`${lists} ${screens === '1' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='1' onClick={handleSwitch}>Crypto Currency</li>
+                <li className={`${lists} ${screens === '2' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='2' onClick={handleSwitch}> Forex</li>
+                <li className={`${lists} ${screens === '3' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='3' onClick={handleSwitch}> Stock</li>
               </ul>
             </div>
 

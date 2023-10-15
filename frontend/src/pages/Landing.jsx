@@ -11,52 +11,51 @@ import Form from './Form'
 export default function Landing() {
   return (
     <div className=' absolute top-0 left-0 min-h-screen w-[100%] z-[0] text-[white] bg-[#0D1321]'>
+  {/*mobile view*/}
       <div className='block md:hidden lg:hidden'>
-          <div className='mt-[10vh]'>
-        <div>
-            <div className='flex justify-left items-center'>
-              <img src={fire} className='h-[150px]'/>
-              <p className='text-[60px] text-[#646cff] mt-[11vh] font-bold font-serif'>LitFX</p>
+          <div className='mt-[10vh] mb-[8vh]'>
+            <div className='w-[100%] flex flex-col justify-center items-center'>
+                <div className='flex justify-left items-center pr-7'>
+                  <img src={fire} className='h-[15vh]'/>
+                  <p className='text-[8vh] text-[#646cff] mt-[6vh] font-bold font-serif'>LitFX</p>
+                </div>
+                <p>Your Gateway to Financial Freedom </p>
             </div>
-            <p>Your Gateway to Financial Freedom </p>
-        </div>
-        <div className='text-[19px] p-4 mt-[5vh] text-white-900'>
-          <p>Discover a world of of opportunities with LitFX.</p>
+            <div className='text-[26px] font-bold p-4 mt-[2vh] text-white-900'>
+              <p>Discover a world of of opportunities with LitFX.</p>
 
-          <p className='text-[22px]'>Start trading today!</p>
-          <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
+              <p className='text-[22px] font-semibold mt-4 mb-2'>Start trading today!</p>
+              <Link to='/onboard'><button className='bg-[#646cff] text-[18px] text-[white]'>Get started</button></Link>
+            </div>
         </div>
-        <div className='mt-[6vh] mb-[2vh]'>
-          <TaperWidget/>
-        </div>
-        <About/>
+        <img src={landing} className='absolute top-0 left-0 z-[-1] h-[600px] w-[100%] blur-sm'/>
       </div>
-      <img src={landing} className='absolute mix-blend-multiply top-0 left-0 z-[-1] opacity-70 h-[600px] w-[100%]'/>
-      </div> 
 
+      {/*tablet and deskop view*/}
       <div className='hidden md:block lg:block'>
-          <div className='mt-[10vh]'>
-        <div>
-            <div className='flex justify-left items-center'>
-              <img src={fire} className='h-[150px]'/>
-              <p className='text-[60px] text-[#646cff] mt-[11vh] font-bold font-serif'>LitFX</p>
-            </div>
-            <p>Your Gateway to Financial Freedom </p>
+          <div className='mt-[10vh] lg:ml-3 lg:mt-[18vh]'>
+              <div className='w-[60%]'>
+                  <div className='flex justify-left items-center'>
+                    <img src={fire} className='h-[80px]'/>
+                    <p className='text-[60px] text-[#646cff] mt-[1vh] font-bold font-serif'>LitFX</p>
+                  </div>
+                  
+              </div>
+              <div className='text-[19px] text-left ml-8 mt-[2vh] text-white-900 w-[50%]'>
+                <p className='text-[25px]'>Your Gateway to Financial Freedom </p>
+                <p>Discover a world of of opportunities with LitFX.</p>
+                <p className='text-[22px] font-bold'>Start trading today!</p>
+                <Link to='/onboard'><button className='bg-[#646cff] text-[white] w-[50%]'>Get started</button></Link>
+              </div>
         </div>
-        <div className='text-[19px] p-4 mt-[5vh] text-white-900'>
-          <p>Discover a world of of opportunities with LitFX.</p>
+        <img src={landing} className='absolute top-0 right-0 z-[-1] h-[40vh] lg:h-[60vh] w-[50%] lg:w-[57%] blur-[2px]'/>
+      </div>
 
-          <p className='text-[22px]'>Start trading today!</p>
-          <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
-        </div>
-        <div className='mt-[6vh] mb-[2vh]'>
+      <div className='mt-[6vh] mb-[2vh]'>
           <TaperWidget/>
         </div>
         <About/>
-        <Form/>
-      </div>
-      <img src={landing} className='absolute top-0 left-0 z-[-1] opacity-70 h-[60vh] w-[70%]'/>
-      </div>     
+        <Form/>     
     </div>
   )
 }

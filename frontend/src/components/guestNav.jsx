@@ -12,6 +12,12 @@ function GuestNav() {
     const handleNav = ()=>{
         setNav(!nav);
     }
+    const handleScroll = (view)=>{
+        const element = document.querySelector(view);
+        if(element){
+            element.scrollIntoView({ behavior: 'smooth'})
+        }
+    }
 
     const list = 'hover:border-b-2 border-[blue] cursor-pointer'
 
@@ -47,7 +53,7 @@ function GuestNav() {
         >
             <Link to='/'><li className={list}>Home</li></Link>
             <li className={list}>About</li>
-            <li className={list}>Contact Us</li>
+           <Link to=''> <li className={list}>Contact Us</li></Link>
            <Link to='/onboard'> <button className='bg-[#646cff] text-[white]'>Get started</button></Link>
 
         </motion.div>
@@ -61,8 +67,8 @@ function GuestNav() {
                     >
                     <div className='list-none text-[12px] text-[black] text-left w-[100%] flex flex-col gap-5 font-bold'>
                     <Link to='/'><li className={list}>Home</li></Link>
-            <li className={list}>About</li>
-            <li className={list}>Contact Us</li>
+            <a to='#about' onClick={()=> handleScroll('#about')}><li className={list}>About</li></a>
+            <a><li className={list} onClick={()=> handleScroll('#contact')}>Contact Us</li></a>
             <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
                     </div>
                 </motion.div>

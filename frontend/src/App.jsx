@@ -10,7 +10,11 @@ import Profile from './pages/Profile'
 import Landing from './pages/Landing';
 import Market from './pages/Market'
 import News from './pages/News'
+import Inbox from './pages/Inbox'
 import AuthContext from './contexts/auth-context';
+import Cashier from './pages/Cashier';
+import Report from './pages/Report';
+import Settings from './pages/Settings';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,6 +36,10 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/news' element={<News/>}/>
+        <Route path='/inbox' element={<Inbox/>}/>
+        <Route path='/cashier' element={<Cashier/>}/>
+        <Route path='/report' element={<Report/>}/>
+        <Route path='/settings' element={<Settings/>} />
       </Routes>
       <Footer/>
     </AuthContext.Provider>
