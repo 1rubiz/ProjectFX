@@ -1,14 +1,17 @@
 import React from 'react'
 import Input from './Input'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import axios from 'axios';
 import Loading from './loading'
 import {useNavigate} from 'react-router-dom';
+import UserContext from '../contexts/auth-context'
 
 function Signup() {
+  const [errs, setErr] = useState('');
   const navigate = useNavigate();
+  const {setUser} = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConfirmPassword] = useState(false);
   const [matchPassword, setMatchPassword] = useState(false);
@@ -46,6 +49,7 @@ if(check){
       setValid(true)
     }else {
     setValid(false)
+    setErr('All fields are required')
      }
 };
   const handlePassword = ()=>{
@@ -70,6 +74,10 @@ if(check){
         await localStorage.setItem('clientsideID', response.data._id);
         await localStorage.setItem('nationality', response.data.nationality);
         await localStorage.setItem('phone', response.data.phone);
+        await setUser({
+          email: response.data.email,
+          user: response.data.name
+        })
         navigate('/dashboard')
         console.log('signup success');
         setLoading(false)
@@ -159,7 +167,7 @@ if(check){
         className='z-5 bg-[white] h-[5.5vh] w-[5vh] flex justify-center items-center text-[1.9vh] top-4 right-2 text-[black]'>
           {showConfirmPassword ? <FaEyeSlash/> : <FaEye/>}</div>
       </label>
-
+       {errs}
       <button onClick={handleSubmit} disabled={!valid} className='bg-[#646cff] hover:border-[white] font-bold text-[1.8vh] hover:border-2 lg:w-[40vh] w-[25vh] h-[5.5vh]'>Create Account</button>
     </motion.div>
   )
