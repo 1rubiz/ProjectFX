@@ -20,7 +20,7 @@ const [email, setEmail]= useState('')
  // console.log(email);
   return(
     <>
-      {(!email) ? <Nav/> : <GuestNav/>}
+      {(email) ? <Nav/> : <GuestNav/>}
     </>
   )
 }
