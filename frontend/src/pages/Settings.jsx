@@ -26,7 +26,7 @@ export default function Settings() {
             <div className='list-none flex justify-evenly items-center mb-5'>
               <ul className='flex gap-8'>
                 <li className={`${lists} ${screens === '1' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='1' onClick={handleSwitch}>Profile</li>
-                <li className={`${lists} ${screens === '2' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='2' onClick={handleSwitch}> Verification</li>
+                {/*<li className={`${lists} ${screens === '2' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='2' onClick={handleSwitch}> Verification</li>*/}
                 <li className={`${lists} ${screens === '3' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='3' onClick={handleSwitch}> Change password</li>
               </ul>
             </div>

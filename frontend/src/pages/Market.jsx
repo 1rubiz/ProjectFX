@@ -19,15 +19,15 @@ export default function Landing() {
           <div className='mt-[10vh] mb-2 text-[15px]'>
             <div className='list-none flex justify-evenly items-center mb-5'>
               <ul className='flex gap-8'>
-                <li className={`${lists} ${screens === '1' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='1' onClick={handleSwitch}>Crypto Currency</li>
-                <li className={`${lists} ${screens === '2' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='2' onClick={handleSwitch}> Forex</li>
-                <li className={`${lists} ${screens === '3' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='3' onClick={handleSwitch}> Stock</li>
+                <li className={`${lists} ${screens === '1' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='1' onClick={handleSwitch}>Cryptocurrency chart</li>
+                {/*<li className={`${lists} ${screens === '2' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='2' onClick={handleSwitch}> Forex</li>
+                <li className={`${lists} ${screens === '3' && 'bg-white text-[#0D1321] rounded-[5px]'}`} id='3' onClick={handleSwitch}> Stock</li>*/}
               </ul>
             </div>
 
-            <div className='text-[#F0EBD8] font-serif text-[20px] md:text-[28px] lg:text-[33px] underline'>
+           {/* <div className='text-[#F0EBD8] font-serif text-[20px] md:text-[28px] lg:text-[33px] underline'>
               {text}
-            </div>
+            </div>*/}
             <div>
               {display}
             </div>

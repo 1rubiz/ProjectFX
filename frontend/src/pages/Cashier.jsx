@@ -3,7 +3,7 @@ import Deposit from '../components/deposit'
 import Withdrawal from '../components/withdrawal'
 
 export default function Cashier() {
-  const [screens, setScreen] = useState('2');
+  const [screens, setScreen] = useState('1');
   const display = (screens === '1') ? <Deposit/> : ((screens === '2') ? <Withdrawal/> : 'Error')
   const lists = 'mx-2 hover:cursor-pointer hover:border-b-2 border-[#F0EBD8] p-2 md:p-4 lg:p-3 font-semibold';
   const handleSwitch = (e)=>{

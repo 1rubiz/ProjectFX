@@ -61,7 +61,6 @@ function Nav() {
             <Link to='/market'><li className={list}>Market</li></Link>
             <Link to='/settings'><li className={list}>Account setting</li></Link>
             <Link to='/inbox'><li className={list}>Inbox</li></Link>
-            <li className={list}>Stake</li>
             <Link to='/news'><li className={list}>News</li></Link>
             <button onClick={logout} className='bg-[red] text-[white]'>Log Out</button>
 
@@ -83,7 +82,6 @@ function Nav() {
             <Link to='/market'><li className={list}>Market</li></Link>
             <Link to='/settings'><li className={list}>Account setting</li></Link>
             <Link to='/inbox'><li className={list}>Inbox</li></Link>
-            <li className={list}>Stake</li>
             <Link to='/news'><li className={list}>News</li></Link>
             <button onClick={logout} className='bg-[red] text-[white]'>Log Out</button>
                     </div>

@@ -42,7 +42,7 @@ function Dashboard() {
                     <div className='flex justify-center gap-3 text-[black]'>
                       <button className="bg-white">Deposit</button>
                       <button className="bg-white" >Withdraw</button>
-                      <button className="bg-white" >Stake</button>
+                      <button className="bg-white" >Trade</button>
                     </div>
                 </div>
                 <Toaster/>

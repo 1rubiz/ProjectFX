@@ -1,12 +1,20 @@
 import React, {useState} from 'react'
-import { FaFacebook, FaGlobe, FaAngleDown, FaInstagram, FaTwitter, FaWhatsapp, FaLinkedin, FaShare } from 'react-icons/fa'
+import { FaFacebook, FaRobot, FaGlobe, FaAngleDown, FaInstagram, FaTwitter, FaWhatsapp, FaLinkedin, FaShare } from 'react-icons/fa'
 import { motion } from 'framer-motion';
+import Chatbot from './chatbot'
 
 function Footer() {
   const [display, setDisplay] = useState(false);
+  const [chat, setChat]= useState(false);
 
   const handleDisplay = ()=>{
     setDisplay(!display)
+    setChat(false)
+  }
+
+  const handleChat = ()=>{
+    setChat(!chat);
+    setDisplay(false)
   }
 
   const button = display ? (
@@ -15,8 +23,8 @@ function Footer() {
     animate={{rotate: 360}}
     transition={{duration: 5}}
     onClick={handleDisplay}
-    className=' hover:border-2 hover:border-[green] rounded-full flex justify-center items-center w-[9vh]'>
-      <FaAngleDown className='text-[5vh] text-[black]'/>
+    className=' hover:border-2 hover:border-[#0D1321] rounded-full flex justify-center items-center w-[6vh]'>
+      <FaAngleDown className='text-[3vh] md:text-[5vh] text-[black]'/>
     </motion.div>
   ) : (
   <motion.div 
@@ -24,8 +32,8 @@ function Footer() {
     animate={{rotate: 360}}
     transition={{duration: 5}}
     onClick={handleDisplay}
-    className='hover:border-2 hover:border-[green] rounded-full flex justify-center items-center'>
-    <FaGlobe className='text-[5vh] text-[black]'/>
+    className='hover:border-2 hover:border-[#0D1321] rounded-full flex justify-center items-center'>
+    <FaGlobe className='text-[3vh] md:text-[5vh] text-[black]'/>
     </motion.div>)
   return (
     <>
@@ -34,7 +42,7 @@ function Footer() {
           animate={{opacity: 1}}
           transition={{duration: 1}}
           exit={{ opacity: 0 }}
-          className='fixed bg-white rounded-full bottom-20 right-3 gap-3 flex flex-col justify-evenly items-center p-3 '>
+          className='fixed bg-white rounded-full bottom-20 right-3 gap-3 flex flex-col justify-evenly items-center p-2 '>
       
       {
         display && (
@@ -46,7 +54,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-                <FaFacebook className='text-[blue]' size={35}/>
+                <FaFacebook className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
       </motion.div>
       <motion.div
       initial={{y: 60}}
@@ -54,7 +62,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaInstagram className='text-[blue]' size={35}/>
+        <FaInstagram className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
       </motion.div>
       <motion.div
       initial={{y: 50}}
@@ -62,7 +70,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaLinkedin className='text-[blue]' size={35}/>
+        <FaLinkedin className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
       </motion.div>
       <motion.div
       initial={{y: 40}}
@@ -70,7 +78,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaTwitter className='text-[blue]' size={35}/>
+        <FaTwitter className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
       </motion.div>
       <motion.div
       initial={{y: 30}}
@@ -78,7 +86,7 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaWhatsapp className='text-[blue]' size={35}/>
+        <FaWhatsapp className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
       </motion.div>
      
       </>
@@ -86,6 +94,22 @@ function Footer() {
       }
       {button}
       </motion.div>
+      <div onClick={handleChat} className='fixed flex justify-center group items-center gap-3 bottom-20 left-4 bg-white rounded-full p-2 text-[#0D1321]'>
+        <FaRobot className='text-[2.9vh] lg:text-[5vh]'/>
+        <p className='inset-0 hidden group-hover:block transition-opacity'>Ask Ai</p>
+      </div>
+        {
+          chat && (
+                  <motion.div
+                    initial={{y: 30}}
+                    animate={{y: 0}}
+                    exit={{ opacity: 0 }}
+                    transition={{duration: 2}} 
+                    className='fixed bottom-[20vh] left-12 w-[200px]'>
+                      <Chatbot/>
+                    </motion.div>
+          )
+        }
     </>
   )
 }

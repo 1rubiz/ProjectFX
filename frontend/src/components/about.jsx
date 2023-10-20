@@ -35,7 +35,7 @@ export default function About(){
         whileInView={{x: 0}}
         exit={{x: -100}}
         transition={{duration: 2}}
-        className='md:pr-14 md:pl-14'
+        className='md:pr-14 md:pl-14 md:mt-4'
       >
         <p className='font-bold text-[21px] bg-white text-[#0D1321] flex justify-center items-center gap-5'>Powerful Tools <FaTools className='text-[orange]'/></p>
         <p className='italic text-justify'>
