@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.12.15",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",

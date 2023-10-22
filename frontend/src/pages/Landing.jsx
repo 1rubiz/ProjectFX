@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import TaperWidget from '../components/taperWidget'
 import Form from './Form'
 import { useUser } from "@clerk/clerk-react";
+import { motion } from 'framer-motion'
 
 export default function Landing() {
   const [urls, setUrl] = useState('');
@@ -29,18 +30,47 @@ export default function Landing() {
   {/*mobile view*/}
       <div className='block md:hidden lg:hidden'>
           <div className='mt-[10vh] mb-[8vh]'>
-            <div className='w-[100%] flex flex-col justify-center items-center'>
-                <div className='flex justify-left items-center pr-7'>
+            <motion.div
+              initial={{x: -100}}
+              whileInView={{x: 0}}
+              exit={{x: -100}}
+              transition={{duration: 2}}
+             className='w-[100%] flex flex-col justify-center items-center'>
+                <div
+                 className='flex justify-left items-center pr-7'>
                   <img src={fire} className='h-[15vh]'/>
-                  <p className='text-[8vh] text-[#646cff] mt-[6vh] font-bold font-serif'>LitFX</p>
+                  <p className='text-[6vh] md:text-[8vh] text-[#646cff] mt-[6vh] font-bold font-serif'>LitFX
+                  <motion.span
+                    initial={{x: 100}}
+                    whileInView={{x: 0}}
+                    exit={{x: 100}}
+                    transition={{duration: 2}}
+                   className='text-[3vh] text-white font-serif'> Playground</motion.span></p>
                 </div>
-                <p>Your Gateway to Financial Freedom </p>
-            </div>
+                <p>Your Personal AI-Assited Crypto-Trainer </p>
+            </motion.div>
             <div className='text-[26px] font-bold p-4 mt-[2vh] text-white-900'>
-              <p>Discover a world of of opportunities with LitFX.</p>
+              <motion.p
+                    initial={{x: 100}}
+                    whileInView={{x: 0}}
+                    exit={{x: 100}}
+                    transition={{duration: 2}}
+              >Learn with both AI and experienced trader's support.</motion.p>
 
-              <p className='text-[22px] font-semibold mt-4 mb-2'>Start trading today!</p>
-              <Link to={urls}><button className='bg-[#646cff] text-[18px] text-[white]'>Get started</button></Link>
+              <motion.p
+                    initial={{x: -100}}
+                    whileInView={{x: 0}}
+                    exit={{x: -100}}
+                    transition={{duration: 2}}
+               className='text-[22px] font-semibold mt-4 mb-2'>
+              Create a demo account and<br/>
+              Start learning today!</motion.p>
+              <Link to={urls}><motion.button
+                    initial={{opacity: 0}}
+                    whileInView={{opacity: 2}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 2}}
+               className='bg-[#646cff] text-[18px] text-[white]'>Get started</motion.button></Link>
             </div>
         </div>
         <img src={landing} className='absolute top-0 left-0 z-[-1] h-[600px] w-[100%] blur-sm'/>
@@ -50,18 +80,35 @@ export default function Landing() {
       <div className='hidden md:block lg:block'>
       <img src={img} className='top-0 right-0 z-[-1] h-[40vh] md:h-[86vh] lg:h-[88vh] w-[100%] lg:w-[100%] blur-[1px]'/>
           <div className='absolute top-[17vh] md:top-[10vh] left-2 mt-[10vh] lg:ml-3 md:mt-[15vh] lg:mt-[10vh] md:w-[80%] lg:w-[40%]'>
-              <div className='w-[100%]'>
+              <motion.div
+                    initial={{x: -100}}
+                    whileInView={{x: 0}}
+                    exit={{x: -100}}
+                    transition={{duration: 2}}
+               className='w-[100%]'>
                   <div className='flex justify-left items-center'>
                     <img src={fire} className='h-[80px]'/>
                     <p className='text-[60px] text-[#646cff] mt-[1vh] font-bold font-serif'>LitFX</p>
                   </div>
-                  
-              </div>
+              </motion.div>
               <div className='text-[19px] text-left ml-8 mt-[2vh] text-white-900 w-[50%] lg:w-[90%]'>
-                <p className='text-[25px]'>Your Gateway to Financial Freedom </p>
-                <p>Discover a world of of opportunities with LitFX.</p>
-                <p className='text-[22px] font-bold'>Start trading today!</p>
-                <Link to={urls}><button className='bg-[#646cff] text-[white] w-[50%]'>Get started</button></Link>
+                <p className='text-[25px]'>Your Personal AI-Assited Crypto-Trainer</p>
+                <motion.div
+                    initial={{x: 100}}
+                    whileInView={{x: 0}}
+                    exit={{x: 100}}
+                    transition={{duration: 2}}
+                >
+                <p>Learn with both AI and experienced trader's support.</p>
+                <p className='text-[22px] font-bold'>Create an account and<br/>
+              Start learning today!</p>
+              </motion.div>
+                <Link to={urls}><motion.button
+                 initial={{opacity: 0}}
+                    whileInView={{opacity: 2}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 2}}
+                 className='bg-[#646cff] text-[white] w-[50%]'>Get started</motion.button></Link>
               </div>
         </div>
         

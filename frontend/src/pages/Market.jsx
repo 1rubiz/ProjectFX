@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import CryptoWidget from '../components/cryptowidget'
 import ForexWidget from '../components/forexWidget';
 import StockWidget from '../components/stockWidget'
-
+import CryptoMarket from '../components/cryptomarket'
 
 export default function Landing() {
   const [screens, setScreen] = useState('1');
@@ -28,6 +28,7 @@ export default function Landing() {
            {/* <div className='text-[#F0EBD8] font-serif text-[20px] md:text-[28px] lg:text-[33px] underline'>
               {text}
             </div>*/}
+              <CryptoMarket/>
             <div>
               {display}
             </div>

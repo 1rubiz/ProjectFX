@@ -7,17 +7,17 @@ export default function Inbox() {
       {
         _id: 'qwertyuiy',
         date: 'October, 13th 2023',
-        amount: '4000',
+        message: 'Join the LitFX community today and unlock your potential in the financial markets. Your future starts here!'
       },
       {
         _id: 'qwertyuiop',
         date: 'October, 14th 2023',
-        amount: '9000'
+        message: 'Get started now and experience the LitFX advantage.'
       },
       {
         _id: '12te645969yydg',
         date: 'October, 15th 2023',
-        amount: '3000'
+        message: 'Get started now and experience the LitFX advantage.'
       }
     ])
 
@@ -38,14 +38,14 @@ getData();
           <div className='mt-[11vh] mb-2'>
            <p className='font-serif text-[30px]'>Inbox</p>
            <hr/>
-{
+           <div className='w-[100%] p-2 flex flex-col justify-center items-center gap-2 pt-2'>
+            {
               (data.length !== 0) ? (
                 data.map((item, i)=>{
                   return(
-                    <div className='w-[100%] p-2' key={i}>
-                      {item.date}
-                      {item.amount}
-                      {item._id}
+                    <div className='w-[100%] p-2 rounded-[5px] border-2 border-white' key={i}>
+                      {item.message}
+                      
                     </div>
                     )
                 })
@@ -53,6 +53,7 @@ getData();
                   <p> No New Messages</p>
                 )
             }
+          </div>
           </div>
     </div>
   )

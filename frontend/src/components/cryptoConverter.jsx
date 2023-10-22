@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function CryptoConverter() {
   const [fromCurrency] = useState('BTC'); // Default values from the provided parameters
@@ -9,7 +9,13 @@ function CryptoConverter() {
   const [date] = useState(new Date().toLocaleString());
   const [amount, setAmount] = useState('');
   const [result, setResult] = useState(0);
-
+  const [bal, setBal] = useState(0)
+  useEffect(() => {
+      const balance = localStorage.getItem('balance');
+      if (balance) {
+        setBal(parseInt(balance))
+      }
+    }, []);
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
   }
@@ -23,24 +29,25 @@ function CryptoConverter() {
     const calculatedResult = amount / exchangeRate;
     setResult(calculatedResult);
   }
-
+// <p>Date: {date}</p>
   return (
     <div>
-      <h1>Crypto Converter</h1>
+      <p>Account Balance: {bal}</p>
       <p>From: {fromCurrency}</p>
       <p>To: {toCurrency}</p>
-      <p>Date: {date}</p>
       <p>Exchange Rate: {exchangeRate}</p>
-      <p>Previous Close: {previousClose}</p>
       <input
         type="number"
         placeholder="Enter amount"
         value={amount}
         onChange={handleAmountChange}
+        className='text-black'
       />
-      <button onClick={handleBuy}>Buy</button>
-      <button onClick={handleSell}>Sell</button>
+      <div>
+      <button onClick={handleBuy} className='text-black'>Buy</button>
+      <button onClick={handleSell} className='text-black'>Sell</button>
       <p>Result: {result.toFixed(2)} {toCurrency}</p>
+      </div>
     </div>
   );
 }

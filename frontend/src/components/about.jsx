@@ -8,10 +8,11 @@ export default function About(){
     <div className='mt-5 p-4'>
       <div className='mb-6 mt-3'>
         <div className='text-[30px] font-bold mb-4' id='about'>A<span className='pb-1 border-b-2 border-b-[orange]'>bout U</span>s</div>
-        <div className='text-justify md:pr-14 md:pl-14'>At LitFX, we believe that finantial empowerment is within reach for everyone
-        . Our story is one of passion, innovation, and dedication to helping individuals and 
-        businesses navigate the complex world of trading and investment.
-        Our mission is simple yet powerful: Toempower you with the tools, knowledge, and support you need to thrive in the financial
+        <div className='text-justify md:pr-14 md:pl-14'>It is common knowledge that the best of things 
+        comes in pairs. AT Litfx we aim to guide you through two of the most respected source of knowledge, man and machine,
+        experienced Traders and AI. Our story is one of passion, innovation, and dedication to helping individuals and 
+        businesses navigate the complex world of trading and investment using cutting-edge AI support.
+        Our mission is simple yet powerful: To empower you with the tools, knowledge, and support you need to thrive in the financial
         markets. Whether you're a seasoned trader or just starting your journey, LitFX is here to guide you
         towards success.</div>
       </div>
@@ -39,7 +40,7 @@ export default function About(){
       >
         <p className='font-bold text-[21px] bg-white text-[#0D1321] flex justify-center items-center gap-5'>Powerful Tools <FaTools className='text-[orange]'/></p>
         <p className='italic text-justify'>
-          Access state-of-the-art trading platforms, real-time data, and comprehensive
+          Access state-of-the-art trading platforms, real-time data, Artificial intelligence, and comprehensive
           research tools that give you the competitve edge in the market.
         </p>
       </motion.div>

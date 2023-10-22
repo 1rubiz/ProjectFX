@@ -12,6 +12,10 @@ import Loading from '../components/loading';
 import { useUser, UserButton } from "@clerk/clerk-react";
   
 function Dashboard() {
+    const [amount, setAmount] = useState(0)
+    const [bal, setBal] = useState(0)
+    const [errs, setErrs] = useState('');
+    const [stat, setStat] = useState(null);
     const navigate = useNavigate()
     const { user } = useUser()
      // const {user} = useContext(UserContext);
@@ -22,7 +26,13 @@ function Dashboard() {
   //Runs only on the first render
       // const verifyUser = async()=>{
       //         const newUser =await localStorage.getItem('name')
-                  
+                const balance = localStorage.getItem('balance')
+                if(!balance){
+                  localStorage.setItem('balance', JSON.stringify(bal))                  
+                }else{
+                  setBal(parseInt(balance));
+                }
+
                 if(user){
                   setUser(user.fullName)
                   toast.success('Welcome ' + user.firstName);
@@ -39,6 +49,48 @@ function Dashboard() {
 
       // setLoading(false)
 }, []);
+
+     const handleAmountChange = (event) => {
+    setAmount(event.target.value);
+  }
+
+  const handleDeposit = () => {
+    if(amount){
+        const calculatedResult = bal + amount;
+        setBal(parseInt(calculatedResult));
+        setStat(null)
+        localStorage.setItem('balance', JSON.stringify(calculatedResult))
+        // return;
+    }else{setErrs('input an amount')}
+  }
+
+  const handleWithdraw = () => {
+    if(amount){
+        if(amount < bal){
+          const calculatedResult = parseInt(bal) - parseInt(amount);
+        setBal(parseInt(calculatedResult));
+        localStorage.setItem('balance', JSON.stringify(calculatedResult));
+        setStat(null)
+        // return;
+      }else{
+        setErrs('Withdraw amount exceed Account balance ')
+      }
+    }else{
+      setErrs('input an amount')
+    }
+    
+  }
+
+  const handleClose = (e)=>{
+    if(e.target.id === 'withdraw'){
+      setStat('withdraw')
+    }else if(e.target.id === 'deposit'){
+      setStat('deposit')
+    }else{
+      setStat(null)
+    }
+  }
+
   return (
     <div className=' absolute top-0 left-0 min-h-screen w-[100%] text-[white] bg-[#0D1321]'>
     <div className={`${loading ? 'block' : 'hidden'}`}>
@@ -46,11 +98,11 @@ function Dashboard() {
     </div>
           <div className='mt-[10vh] flex flex-col-reverse md:flex-row justify-center md:gap-[25%] mb-2'>
                 <div className='text-[black] md:max-w-[47%]'>
-                    <p className='text-white hover:text-[18px] font-bold'>Balance: $ 0.0</p>
+                    <p className='text-white hover:text-[18px] font-bold'>Balance: $ {bal.toFixed(2)}</p>
                     <div className='flex justify-center gap-3 text-[black]'>
-                      <button className="bg-white">Deposit</button>
-                      <button className="bg-white" >Withdraw</button>
-                      <button className="bg-white" >Trade</button>
+                      <button className="bg-white text-black" id='deposit' onClick={handleClose}>Deposit</button>
+                      <button className="bg-white text-black" id='withdraw' onClick={handleClose}>Withdraw</button>
+                      <button className="bg-white text-black" >Trade</button>
                     </div>
                 </div>
                 <Toaster/>
@@ -63,6 +115,27 @@ function Dashboard() {
                   <p>{(users) && users}</p>
                 </div>
           </div>
+          {stat && (
+            <div className='absolute top-[10vh] left-0 h-[30vh] bg-[#0D1321] border-2 p-2 w-[90%] pt-9'>
+              <div className='flex justify-center items-center gap-3'>
+                $<input
+                  className='w-[30%] text-[2vh] p-2 h-[3vh] text-black'
+                  placeholder='Input amount'
+                  type='number'
+                  onChange={handleAmountChange}
+                />
+                
+                {
+                  stat === 'withdraw' && (<button onClick={handleWithdraw} className="bg-white text-black">withdraw</button>)
+                }
+                {
+                  stat  === 'deposit' && (<button onClick={handleDeposit} className="bg-white text-black"> Deposit</button>)
+                }
+                <button className="bg-white text-black" onClick={handleClose}>Close</button>
+          </div>
+          <p className='text-[red]'>{errs}</p>
+          </div>
+            )}
           <div className='h-[500px] w-[100%]'>
             <WatchListWidget/>
           </div>
