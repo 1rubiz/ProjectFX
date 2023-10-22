@@ -37,7 +37,7 @@ export default function Landing() {
               transition={{duration: 2}}
              className='w-[100%] flex flex-col justify-center items-center'>
                 <div
-                 className='flex justify-left items-center pr-7'>
+                 className='flex justify-left items-center pr-4'>
                   <img src={fire} className='h-[15vh]'/>
                   <p className='text-[6vh] md:text-[8vh] text-[#646cff] mt-[6vh] font-bold font-serif'>LitFX
                   <motion.span
