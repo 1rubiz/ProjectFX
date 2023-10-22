@@ -8,19 +8,18 @@ import About from '../components/about';
 import { Link } from 'react-router-dom';
 import TaperWidget from '../components/taperWidget'
 import Form from './Form'
+import { useUser } from "@clerk/clerk-react";
 
 export default function Landing() {
   const [urls, setUrl] = useState('');
-
+      const { isLoaded, isSignedIn, user } = useUser();
   useEffect(()=>{
     const getUser = async ()=>{
-      const user = await localStorage.getItem('name');
-      if(user){
+      // const user = await localStorage.getItem('name');
+  if (!(!isLoaded || !isSignedIn)){
         setUrl('/dashboard');
-        console.log('user')
       }else{
-        setUrl('/onboard');
-        console.log('no user')
+        setUrl('/sign-in');
       }
     }
     getUser();

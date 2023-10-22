@@ -2,8 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import img from '/img.jpg';
 import img2 from '/img2.jpg';
-import Signup from '../components/Signup';
-import Login from '../components/Login';
+import SignUpPage from '../components/Signup';
+import SignInPage from '../components/Login';
 import { motion, AnimatePresence } from 'framer-motion';
 import Writer from '../components/writer';
 
@@ -36,12 +36,12 @@ function Onboard() {
                 {
                     register ? (
                         <div className='text-[1.6vh]'>
-                            <Signup/>
+                            <SignUpPage/>
                             Already have an account with us? <span onClick={handleChange} className='font-bold text-[1.9vh] mt-3'>Login</span>
                         </div>
                     ) : (
                     <div className='text-[1.6vh]'>
-                        <Login/>
+                        <SignInPage/>
                         Don't have an account with us?
                         <span onClick={handleChange} className='font-bold text-[1.9vh]'> Register</span>
                     </div>)
@@ -53,7 +53,7 @@ function Onboard() {
         <div className='text-[#F0EBD8] border-2 border-white lg:w-[60vh] w-[40vh] pb-4 min-h-[40vh] bg-[#0D1321] opacity-80'
                     style={{boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset'}}>
                 <div className='text-[1.6vh]'>
-                <Signup/>
+                <SignUpPage/>
                 Already have an account ? <span onClick={handleScreen} className='font-bold hover:cursor-pointer text-[1.5vh] mt-3'>Login</span>
             </div>
         </div>
@@ -61,7 +61,7 @@ function Onboard() {
         <div className='text-[#F0EBD8] border-2 border-white lg:w-[60vh] w-[40vh] pb-4 min-h-[40vh] bg-[#0D1321] opacity-90 ml-[-16vh]'
                     style={{boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset'}}>
             <div className='text-[1.6vh]'>
-                <Login/>
+                <SignInPage/>
                 Don't have an account with us?
                 <span onClick={handleScreen} className='font-bold hover:cursor-pointer text-[1.5vh]'> Register</span>
             </div>

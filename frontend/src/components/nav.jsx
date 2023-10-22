@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '/vite.svg';
 import fire from '/fire-logo.svg'
 import UserContext from '../contexts/auth-context'
+import { SignOutButton } from "@clerk/clerk-react";
 
 function Nav() {
     const navigate = useNavigate();
@@ -17,10 +18,10 @@ function Nav() {
     }
     const email = localStorage.getItem('email');
     const logout = ()=>{
-        localStorage.clear();
-        setUser(!user);
-        window.location.reload();
-        window.location.href='/'
+        // localStorage.clear();
+        // setUser(!user);
+        // window.location.reload();
+        // window.location.href='/'
         navigate('/');
     }
     const list = 'hover:border-b-2 border-[blue] cursor-pointer'
@@ -62,7 +63,11 @@ function Nav() {
             <Link to='/settings'><li className={list}>Account setting</li></Link>
             <Link to='/inbox'><li className={list}>Inbox</li></Link>
             <Link to='/news'><li className={list}>News</li></Link>
-            <button onClick={logout} className='bg-[red] text-[white]'>Log Out</button>
+            
+             <SignOutButton signOutCallback={logout}>
+                <button onClick={logout} className='bg-[red] text-[white]'>Log Out</button>
+                </SignOutButton>
+            
 
         </motion.div>
     {/*mobile nav*/}
@@ -83,7 +88,9 @@ function Nav() {
             <Link to='/settings'><li className={list}>Account setting</li></Link>
             <Link to='/inbox'><li className={list}>Inbox</li></Link>
             <Link to='/news'><li className={list}>News</li></Link>
-            <button onClick={logout} className='bg-[red] text-[white]'>Log Out</button>
+            <SignOutButton signOutCallback={logout}>
+                 <button className='bg-[red] text-[white]'>Log Out</button>
+             </SignOutButton>
                     </div>
                 </motion.div>
             )

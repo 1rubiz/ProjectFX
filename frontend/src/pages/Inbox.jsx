@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 
 export default function Inbox() {
 
@@ -20,6 +20,18 @@ export default function Inbox() {
         amount: '3000'
       }
     ])
+
+useEffect(()=>{
+
+  const getData =async ()=>{
+    const cookies = document.cookie;
+    const response =await axios.post('http://localhost:3000/verify', {withCredentials: true})
+    //const response =  await axios.get("https://projectfx-server.onrender.com/api/users/login",form)
+ // const response =  await axios.post("http://localhost:3000/verify-clerk-token", {withCredentials: true})
+  console.log(response)
+  }
+getData();
+}, [])
 
   return (
     <div className=' absolute top-0 left-0 min-h-screen w-[100%] text-[white] bg-[#0D1321]'>

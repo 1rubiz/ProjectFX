@@ -9,27 +9,35 @@ import chart from '/img4.jpg'
 import UserContext from '../contexts/auth-context'
 import toast, { Toaster } from 'react-hot-toast';
 import Loading from '../components/loading';
-
+import { useUser, UserButton } from "@clerk/clerk-react";
+  
 function Dashboard() {
     const navigate = useNavigate()
+    const { user } = useUser()
      // const {user} = useContext(UserContext);
-     const [user, setUser] = useState('')
+     const [users, setUser] = useState('')
      const [loading, setLoading] = useState(false)
      useEffect(() => {
-   setLoading(true);
+   // setLoading(true);
   //Runs only on the first render
-      const verifyUser = async()=>{
-              const newUser =await localStorage.getItem('name')
-                if(newUser){
-                  setUser(newUser)
-                  toast.success('Welcome ' + newUser);
+      // const verifyUser = async()=>{
+      //         const newUser =await localStorage.getItem('name')
+                  
+                if(user){
+                  setUser(user.fullName)
+                  toast.success('Welcome ' + user.firstName);
 
                 }
-                console.log('no user')
+                  // else{
+
+
+                // console.log('no user')
                 // navigate('/Onboard')
-      }
-      verifyUser()
-      setLoading(false)
+              // }
+      // }
+      // verifyUser()
+
+      // setLoading(false)
 }, []);
   return (
     <div className=' absolute top-0 left-0 min-h-screen w-[100%] text-[white] bg-[#0D1321]'>
@@ -49,9 +57,10 @@ function Dashboard() {
                 <hr className='block md:hidden'/>
                 <div className='flex flex-col justify-center items-center md:max-w-[48%] mb-3'>
                   <div className='border-[white] border-2 rounded-full p-2'>
-                    <Link to='/profile'><FaUser className='text-[white] text-[25px]'/></Link>
+                    
+                    <UserButton/>
                   </div>
-                  <p>{(user) && user}</p>
+                  <p>{(users) && users}</p>
                 </div>
           </div>
           <div className='h-[500px] w-[100%]'>
