@@ -98,7 +98,7 @@ function Dashboard() {
     </div>
           <div className='mt-[10vh] flex flex-col-reverse md:flex-row justify-center md:gap-[25%] mb-2'>
                 <div className='text-[black] md:max-w-[47%]'>
-                    <p className='text-white hover:text-[18px] font-bold'>Balance: $ {bal.toFixed(2)}</p>
+                    <p className='text-white hover:text-[18px] font-bold'>Balance: $ {parseInt(bal.toFixed(2))}</p>
                     <div className='flex justify-center gap-3 text-[black]'>
                       <button className="bg-white text-black" id='deposit' onClick={handleClose}>Deposit</button>
                       <button className="bg-white text-black" id='withdraw' onClick={handleClose}>Withdraw</button>

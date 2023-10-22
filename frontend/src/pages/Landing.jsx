@@ -37,15 +37,15 @@ export default function Landing() {
               transition={{duration: 2}}
              className='w-[100%] flex flex-col justify-center items-center'>
                 <div
-                 className='flex justify-left items-center pr-4'>
+                 className='flex flex-row text-left w-[100%] justify-left items-center pr-8'>
                   <img src={fire} className='h-[15vh]'/>
-                  <p className='text-[6vh] md:text-[8vh] text-[#646cff] mt-[6vh] font-bold font-serif'>LitFX
+                  <p className='text-[4.6vh] md:text-[8vh] text-[#646cff] mt-[6vh] font-bold font-serif'>LitFX
                   <motion.span
                     initial={{x: 100}}
                     whileInView={{x: 0}}
                     exit={{x: 100}}
                     transition={{duration: 2}}
-                   className='text-[3vh] text-white font-serif'> Playground</motion.span></p>
+                   className='text-[2.5vh] text-white font-serif'> Playground</motion.span></p>
                 </div>
                 <p>Your Personal AI-Assited Crypto-Trainer </p>
             </motion.div>
