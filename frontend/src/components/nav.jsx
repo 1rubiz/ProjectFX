@@ -16,6 +16,9 @@ function Nav() {
     const handleNav = ()=>{
         setNav(!nav);
     }
+    const closes = ()=>{
+        setNav(false)
+    }
     const email = localStorage.getItem('email');
     const logout = ()=>{
         // localStorage.clear();
@@ -81,13 +84,13 @@ function Nav() {
                     >
                     <div className='list-none text-[12px] text-[black] text-left w-[100%] flex flex-col gap-5 font-bold'>
                     <li className='underline text-[16px] font-bold'>{email}</li>
-                    <Link to='/dashboard'><li className={list}>Dashboard</li></Link>
-            <Link to='/cashier'><li className={list}>Cashier</li></Link>
-            <Link to='/report'><li className={list}>Reports</li></Link>
-            <Link to='/market'><li className={list}>Market</li></Link>
-            <Link to='/settings'><li className={list}>Account setting</li></Link>
-            <Link to='/inbox'><li className={list}>Inbox</li></Link>
-            <Link to='/news'><li className={list}>News</li></Link>
+                    <Link to='/dashboard'><li onClick={closes} className={list}>Dashboard</li></Link>
+            <Link to='/cashier'><li onClick={closes} className={list}>Cashier</li></Link>
+            <Link to='/report'><li onClick={closes} className={list}>Reports</li></Link>
+            <Link to='/market'><li onClick={closes} className={list}>Market</li></Link>
+            <Link to='/settings'><li onClick={closes} className={list}>Account setting</li></Link>
+            <Link to='/inbox'><li onClick={closes} className={list}>Inbox</li></Link>
+            <Link to='/news'><li onClick={closes} className={list}>News</li></Link>
             <SignOutButton signOutCallback={logout}>
                  <button className='bg-[red] text-[white]'>Log Out</button>
              </SignOutButton>

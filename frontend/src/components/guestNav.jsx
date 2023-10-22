@@ -6,18 +6,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import logo from '/vite.svg';
 import fire from '/fire-logo.svg'
+import { useUser } from "@clerk/clerk-react";
 
 function GuestNav() {
     const [nav, setNav]= useState(false);
     const handleNav = ()=>{
         setNav(!nav);
     }
+    const closes = ()=>{
+        setNav(false)
+    }
     const handleScroll = (view)=>{
+        closes();
         const element = document.querySelector(view);
         if(element){
             element.scrollIntoView({ behavior: 'smooth'})
         }
     }
+
+    const [urls, setUrl] = useState('');
+      const { isLoaded, isSignedIn, user } = useUser();
+  useEffect(()=>{
+    const getUser = async ()=>{
+      // const user = await localStorage.getItem('name');
+  if (!(!isLoaded || !isSignedIn)){
+        setUrl('/dashboard');
+      }else{
+        setUrl('/sign-in');
+      }
+    }
+    getUser();
+  },[])
 
     const list = 'hover:border-b-2 border-[blue] cursor-pointer'
 
@@ -54,7 +73,7 @@ function GuestNav() {
             <Link to='/'><li className={list}>Home</li></Link>
            <Link> <li className={list} onClick={()=> handleScroll('#about')}>About</li></Link>
            <Link to=''> <li className={list} onClick={()=> handleScroll('#contact')}>Contact Us</li></Link>
-           <Link to='/onboard'> <button className='bg-[#646cff] text-[white]'>Get started</button></Link>
+           <Link to={urls}> <button className='bg-[#646cff] text-[white]'>Get started</button></Link>
 
         </motion.div>
         {
@@ -66,7 +85,7 @@ function GuestNav() {
                     exit={{ opacity: 0 }}
                     >
                     <div className='list-none text-[12px] text-[black] text-left w-[100%] flex flex-col gap-5 font-bold'>
-                    <Link to='/'><li className={list}>Home</li></Link>
+                    <Link to='/'><li onClick={closes} className={list}>Home</li></Link>
             <a to='#about' onClick={()=> handleScroll('#about')}><li className={list}>About</li></a>
             <a><li className={list} onClick={()=> handleScroll('#contact')}>Contact Us</li></a>
             <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
