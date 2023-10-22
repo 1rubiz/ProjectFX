@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FaBars, FaFire } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
