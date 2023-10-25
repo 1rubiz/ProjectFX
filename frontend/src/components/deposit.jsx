@@ -1,28 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import CashierMsg from './cashiermsg'
+import { useUser } from '@clerk/clerk-react'
+import { getAccount } from '../contexts/supabase';
 
 export default function Deposit() {
+  const { user } = useUser();
   const [val, setVal] = useState(null)
-  const [data, setData]= useState([
-      {
-        _id: 'qwertyuiy',
-        date: 'October, 13th 2023',
-        amount: '4000',
-        account_num: '1290********'
-      },
-      {
-        _id: 'qwertyuiop',
-        date: 'October, 14th 2023',
-        amount: '9000',
-        account_num: '5768********'
-      },
-      {
-        _id: '12te645969yydg',
-        date: 'October, 15th 2023',
-        amount: '3000',
-        account_num: '1038********'
-      }
-    ])
+  const [data, setData]= useState(null);
+
+    useEffect(()=>{
+    const getDate =async ()=>{
+      await user;
+      const newData = await getAccount('deposit', 'd_id', user.id);
+      setData(newData);
+    }
+    getDate();
+  }, [])
 
   const handleDisplay = (item)=>{
     setVal(item);
@@ -36,11 +29,11 @@ export default function Deposit() {
           <div className='w-[100%] md:w-[80%]'>
            <hr/>
             {
-              (data.length !== 0) ? (
+              (data) ? (
                 data.map((item, i)=>{
                   return(
                     <div className='w-[100%] p-2 hover:opacity-50'  onClick={()=> handleDisplay(i)} key={i}>
-                      <CashierMsg type='deposit' _id={item._id} date={item.date} customColor='text-[lightGreen]' amount={item.amount}/>
+                      <CashierMsg type='deposit' _id={item.id} date={item.created_at} customColor='text-[lightGreen]' amount={item.amount}/>
                     </div>
                     )
                 })

@@ -10,7 +10,10 @@ import UserContext from '../contexts/auth-context'
 import toast, { Toaster } from 'react-hot-toast';
 import Loading from '../components/loading';
 import { useUser, UserButton } from "@clerk/clerk-react";
-  
+import { useAuth } from '@clerk/clerk-react';
+import { createClient } from "@supabase/supabase-js";
+import { checkUser, createUser, createwithdrawal, createdeposit, createBalance, checkBalance, updateBalance } from '../contexts/supabase'
+
 function Dashboard() {
     const [amount, setAmount] = useState(0)
     const [bal, setBal] = useState(0)
@@ -21,55 +24,77 @@ function Dashboard() {
      // const {user} = useContext(UserContext);
      const [users, setUser] = useState('')
      const [loading, setLoading] = useState(false)
+
+          const { getToken } = useAuth();
+
      useEffect(() => {
+      
    // setLoading(true);
   //Runs only on the first render
-      // const verifyUser = async()=>{
+      const verifyUser = async()=>{
+        await user;
+        // console.log(user);
       //         const newUser =await localStorage.getItem('name')
-                const balance = localStorage.getItem('balance')
-                if(!balance){
-                  localStorage.setItem('balance', JSON.stringify(bal))                  
-                }else{
-                  setBal(parseInt(balance));
-                }
+                // const balance = localStorage.getItem('balance')
+                // if(!balance){
+                //   localStorage.setItem('balance', JSON.stringify(bal))                  
+                // }else{
+                //   setBal(parseInt(balance));
+                // }
 
                 if(user){
                   setUser(user.fullName)
                   toast.success('Welcome ' + user.firstName);
 
                 }
-                  // else{
 
 
-                // console.log('no user')
-                // navigate('/Onboard')
-              // }
-      // }
-      // verifyUser()
+      const verified = await checkUser(user.id);
+      console.log(verified);
+      if(verified === 2){
+        const userStatus =await createUser(user.emailAddresses[0].emailAddress, user.id, user.fullName)
+        createBalance(user.id, 0.00);
+        // console.log(userStatus);
+      }else if(verified === 1){
+        console.log('user exists')
+      }
+      const bals =await checkBalance(user.id);
+        setBal(parseInt(bals[0].amount))
+      // console.log(bals)
+    }
 
-      // setLoading(false)
+    verifyUser();
 }, []);
+
+     
+
 
      const handleAmountChange = (event) => {
     setAmount(event.target.value);
   }
 
-  const handleDeposit = () => {
+  const handleDeposit = async () => {
+    await user
     if(amount){
         const calculatedResult = bal + amount;
         setBal(parseInt(calculatedResult));
         setStat(null)
-        localStorage.setItem('balance', JSON.stringify(calculatedResult))
+        // localStorage.setItem('balance', JSON.stringify(calculatedResult))
+        createdeposit(amount, user.id)
+        const bals = await updateBalance(user.id, calculatedResult)
         // return;
     }else{setErrs('input an amount')}
   }
 
-  const handleWithdraw = () => {
+  const handleWithdraw = async() => {
+    // await user
     if(amount){
         if(amount < bal){
           const calculatedResult = parseInt(bal) - parseInt(amount);
         setBal(parseInt(calculatedResult));
-        localStorage.setItem('balance', JSON.stringify(calculatedResult));
+        // localStorage.setItem('balance', JSON.stringify(calculatedResult));
+        createwithdrawal(amount, user.id)
+        const bals = await updateBalance(user.id, calculatedResult)
         setStat(null)
         // return;
       }else{
@@ -98,11 +123,11 @@ function Dashboard() {
     </div>
           <div className='mt-[10vh] flex flex-col-reverse md:flex-row justify-center md:gap-[25%] mb-2'>
                 <div className='text-[black] md:max-w-[47%]'>
-                    <p className='text-white hover:text-[18px] font-bold'>Balance: $ {parseInt(bal.toFixed(2))}</p>
+                    <p className='text-white hover:text-[18px] font-bold'>Balance: $ {parseInt(bal).toFixed(2)}</p>
                     <div className='flex justify-center gap-3 text-[black]'>
                       <button className="bg-white text-black" id='deposit' onClick={handleClose}>Deposit</button>
                       <button className="bg-white text-black" id='withdraw' onClick={handleClose}>Withdraw</button>
-                      <button className="bg-white text-black" >Trade</button>
+                      <Link to='/market'><button className="bg-white text-black" >Trade</button></Link>
                     </div>
                 </div>
                 <Toaster/>
@@ -116,7 +141,7 @@ function Dashboard() {
                 </div>
           </div>
           {stat && (
-            <div className='absolute top-[10vh] left-0 h-[30vh] bg-[#0D1321] border-2 p-2 w-[90%] pt-9'>
+            <div className='absolute top-[10vh] left-0 h-[70vh] bg-[#0D1321] border-2 p-2 w-[90%] pt-9'>
               <div className='flex justify-center items-center gap-3'>
                 $<input
                   className='w-[30%] text-[2vh] p-2 h-[3vh] text-black'

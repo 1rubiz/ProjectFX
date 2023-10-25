@@ -10,23 +10,25 @@ const Form = () => {
   const [loading, setLoading] = useState(false)
   const form = useRef();
   const navigate = useNavigate();
+  const emailbtn = document.querySelector('#emailBtn')
   const sendEmail = (e) => {
     e.preventDefault();
+    emailbtn.innerHTML='sending email ........'
     setLoading(true)
-    console.log(form);
     emailjs
       .sendForm(
-        'service_jfopqcm',
-        'template_fxlzksd',
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
         form.current,
-        'cQ9tNBofj3dFSjKWb'
+        import.meta.env.VITE_EMAIL_KEY
       )
       .then(
         (result) => {
           console.log(result.text);
           toast.success('Email sent succesfully...');
-          navigate('/');
+              emailbtn.innerHTML='successfully sent!'
           setLoading(false);
+              emailbtn.innerHTML='Submit'
         },
         (error) => {
           console.log(error.text);
@@ -58,22 +60,25 @@ const Form = () => {
       <Input 
       customClass='bg-[#c5fbbd] mb-3 focus:bg-[white] w-[25vh] h-[5.5vh]'
       labelText='Email' 
-      name='user_name'
+      name='from_name'
+      id='from_name'
       placeholder='Full Name'
       labelFor='Name'/>
             
       <Input 
       customClass='bg-[#c5fbbd] mb-2 focus:bg-[white] w-[25vh] h-[5.5vh]'
       labelText='Email'
-      name='user_email'
+      name='email'
+      id='email'
       placeholder='Email'
       labelFor='Email'/>
       <textarea
-      name='name'
+      name='message'
+      id='message'
       placeholder='Email body....'
-      className='w-[100%] min-h-[15vh] pl-3 text-white border-2 border-white'
+      className='w-[100%] min-h-[15vh] pl-3 text-black border-2 border-white'
       />
-    <button className='bg-[#3E5C76] hover:border-[white] font-bold text-[1.8vh] text-white hover:border-2 w-[25vh] lg:w-[45%] h-[5.5vh]'>Submit</button>
+    <button id='emailBtn' className='bg-[#3E5C76] hover:border-[white] font-bold text-[1.8vh] text-white hover:border-2 w-[25vh] lg:w-[45%] h-[5.5vh]'>Submit</button>
     </form>
     </motion.div>
       </div>

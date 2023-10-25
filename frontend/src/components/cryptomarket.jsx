@@ -1,12 +1,11 @@
 import React from 'react'
-import CryptoConverter from './cryptoConverter'
-
+import MarketSquare from './marketSquare'
 export default function CryptoMarket(){
 
 
 	return(
 			<div>
-				<CryptoConverter/>
+				<MarketSquare/>
 			</div>
 		)
 }

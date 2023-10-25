@@ -48,21 +48,14 @@ function Footer() {
         display && (
           <>
 
-            <motion.div
-      initial={{y: 70}}
-      animate={{y: 0}}
-      exit={{ opacity: 0 }}
-      transition={{duration: 2}}
-      >
-                <FaFacebook className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
-      </motion.div>
+     
       <motion.div
       initial={{y: 60}}
       animate={{y: 0}}
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaInstagram className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
+        <FaInstagram className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3.9vh]'/>
       </motion.div>
       <motion.div
       initial={{y: 50}}
@@ -70,23 +63,16 @@ function Footer() {
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaLinkedin className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
+        <FaLinkedin className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3.9vh]'/>
       </motion.div>
-      <motion.div
-      initial={{y: 40}}
-      animate={{y: 0}}
-      exit={{ opacity: 0 }}
-      transition={{duration: 2}}
-      >
-        <FaTwitter className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
-      </motion.div>
+      
       <motion.div
       initial={{y: 30}}
       animate={{y: 0}}
       exit={{ opacity: 0 }}
       transition={{duration: 2}}
       >
-        <FaWhatsapp className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
+      <a href={import.meta.env.VITE_WHATSAPP}>  <FaWhatsapp className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3.9vh]'/></a>
       </motion.div>
      
       </>
@@ -105,7 +91,7 @@ function Footer() {
                     animate={{y: 0}}
                     exit={{ opacity: 0 }}
                     transition={{duration: 2}} 
-                    className='fixed bottom-[20vh] left-12 w-[200px]'>
+                    className='fixed bottom-[20vh] left-12 w-[300px] h-[40vh]'>
                       <Chatbot/>
                     </motion.div>
           )
@@ -115,3 +101,22 @@ function Footer() {
 }
 
 export default Footer
+
+
+//// <motion.div
+//       initial={{y: 40}}
+//       animate={{y: 0}}
+//       exit={{ opacity: 0 }}
+//       transition={{duration: 2}}
+//       >
+//         <FaTwitter className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
+//       </motion.div>
+
+      //  <motion.div
+      // initial={{y: 70}}
+      // animate={{y: 0}}
+      // exit={{ opacity: 0 }}
+      // transition={{duration: 2}}
+      // >
+      //           <FaFacebook className='text-[#0D1321] hover:text-[3.6vh] hover:text-[blue] text-[3vh]'/>
+      // </motion.div>

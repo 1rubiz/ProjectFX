@@ -19,7 +19,7 @@ function Writer({
           }
       }, time);
         
-      }, [])
+      }, [message])
   return (
     <div className={customClass}>{text}</div>
   )

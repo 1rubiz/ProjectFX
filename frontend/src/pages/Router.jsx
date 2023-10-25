@@ -57,7 +57,17 @@ export default function ClerkProviderWithRoutes() {
           element={<SignUp routing="path" path="/sign-up" />}
         />
         <Route path='/market' element={<Market/>} />
-        <Route path='/dashboard' element={<Dashboard/>}/>
+        <Route path='/dashboard'
+          element={
+          <>
+            <SignedIn>
+              <Dashboard/>
+            </SignedIn>
+             <SignedOut>
+              <RedirectToSignIn />
+           </SignedOut>
+          </>
+          }/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/news' element={<News/>}/>
         <Route path='/inbox' element={<Inbox/>}/>

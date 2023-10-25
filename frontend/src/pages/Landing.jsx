@@ -10,6 +10,7 @@ import TaperWidget from '../components/taperWidget'
 import Form from './Form'
 import { useUser } from "@clerk/clerk-react";
 import { motion } from 'framer-motion'
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Landing() {
   const [urls, setUrl] = useState('');
@@ -24,6 +25,10 @@ export default function Landing() {
       }
     }
     getUser();
+    if(user){
+      // setUser(user.fullName)
+      toast.success('Welcome ' + user.firstName);
+    }
   },[])
   return (
     <div className=' absolute top-0 left-0 min-h-screen w-[100%] z-[0] text-[white] bg-[#0D1321]'>

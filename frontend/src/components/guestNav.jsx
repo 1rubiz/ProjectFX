@@ -88,7 +88,7 @@ function GuestNav() {
                     <Link to='/'><li onClick={closes} className={list}>Home</li></Link>
             <a to='#about' onClick={()=> handleScroll('#about')}><li className={list}>About</li></a>
             <a><li className={list} onClick={()=> handleScroll('#contact')}>Contact Us</li></a>
-            <Link to='/onboard'><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
+            <Link to={urls}><button className='bg-[#646cff] text-[white]'>Get started</button></Link>
                     </div>
                 </motion.div>
             )
