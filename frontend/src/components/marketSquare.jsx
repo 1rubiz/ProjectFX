@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {rate} from './rates'
 import CryptoConverter from './cryptoConverter'
+import { checkBalance } from '../contexts/supabase'
+import { useUser } from '@clerk/clerk-react'
 
 export default function MarketSquare(){
 	const [fromSym, setFromSym] = useState('');
@@ -14,12 +16,19 @@ export default function MarketSquare(){
 	const cells = 'border-2 border-white p-2';
 	const [data, setData] = useState(null);
 	const [selectedId, setSelectedId] = useState(null);
+	const [bal, setBal] = useState(0);
 
+	const { user } = useUser()
 	useEffect(()=>{
 		const getuser = async ()=>{
 			console.log('searching...')
+			await user;
 			const newdata= await rate();
 			const { trends } =await newdata.data;
+			      const bals =await checkBalance(user.id);
+		      if(bals.length > 0){
+		        setBal(parseInt(bals[0].amount))
+		      }
 			// console.log(trends)
 			setData(trends);
 			console.log('done!')
@@ -51,6 +60,7 @@ export default function MarketSquare(){
 	return(
 		<div>
 			<div className='w-[100%] flex flex-col justify-center items-center gap-5'>
+			<h2>Account balance : $ {bal}</h2>
 				<div>
 					<table className='border-[6px] border-white'>
 				        <tr className='bg-black border-2 border-white'>

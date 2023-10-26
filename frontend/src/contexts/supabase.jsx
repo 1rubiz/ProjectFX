@@ -32,21 +32,28 @@ export async function fetchFromSupabase() {
 }
 
 export async function createUser(email, u_id, name){
+  const val = await checkUser(u_id)
+  if(val === 1){
+    return;
+  }
   // const supabase = createClient(supabaseUrl, supabaseKey);
-  const { data, error } = await supabase
+  if(val === 2){
+    const { data, error } = await supabase
     .from('users')
       .insert([
         { 'u_id': u_id, 'email': email, 'name': name }
       ])
       .select()
-    if(error){
+      if(error){
       return (0)
     }
     if(data.length > 0){
       return (1)
     }else{
       return (2)
-    }      
+    }
+  }
+          
 }
 
 export async function createwithdrawal(amount, u_id){
@@ -79,13 +86,19 @@ export async function getAccount(acc, u_id, id){
 }
 
 export async function createBalance(b_id, amount){
- const { data, error } = await supabase
+      const val =await getAccount('balance', 'b_id', b_id)
+      if(val.length > 0){
+        return
+      }else{
+      const { data, error } = await supabase
     .from('balance')
-      .insert([
+          .insert([
         { b_id: b_id, amount: amount}
       ])
       .select()
       return data; 
+
+      }
 }
 
 export async function checkBalance(b_id){
@@ -99,7 +112,7 @@ export async function checkBalance(b_id){
 export async function updateBalance(b_id, amount){
     const { data, error } = await supabase
     .from('balance')
-      .update({b_id: amount})
+      .update({amount: amount})
       .eq('b_id', b_id)
       return data;
 }

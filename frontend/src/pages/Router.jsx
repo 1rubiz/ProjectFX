@@ -56,7 +56,16 @@ export default function ClerkProviderWithRoutes() {
           path="/dashboard/*"
           element={<SignUp routing="path" path="/sign-up" />}
         />
-        <Route path='/market' element={<Market/>} />
+        <Route path='/settings/profile' element={
+            <>
+            <SignedIn>
+              <Profile/>
+            </SignedIn>
+             <SignedOut>
+              <RedirectToSignIn />
+           </SignedOut>
+          </>
+          } />
         <Route path='/dashboard'
           element={
           <>
@@ -68,11 +77,38 @@ export default function ClerkProviderWithRoutes() {
            </SignedOut>
           </>
           }/>
-        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/market' element={
+          <>
+            <SignedIn>
+              <Market/>
+            </SignedIn>
+             <SignedOut>
+              <RedirectToSignIn />
+           </SignedOut>
+          </>
+        }/>
         <Route path='/news' element={<News/>}/>
         <Route path='/inbox' element={<Inbox/>}/>
-        <Route path='/cashier' element={<Cashier/>}/>
-        <Route path='/report' element={<Report/>}/>
+        <Route path='/cashier' element={
+           <>
+            <SignedIn>
+              <Cashier/>
+            </SignedIn>
+             <SignedOut>
+              <RedirectToSignIn />
+           </SignedOut>
+          </> 
+          }/>
+        <Route path='/report' element={
+            <>
+            <SignedIn>
+              <Report/>
+            </SignedIn>
+             <SignedOut>
+              <RedirectToSignIn />
+           </SignedOut>
+          </>
+          }/>
         <Route path='/settings' element={<Settings/>} />
         
       </Routes>

@@ -33,15 +33,6 @@ function Dashboard() {
   //Runs only on the first render
       const verifyUser = async()=>{
         await user;
-        // console.log(user);
-      //         const newUser =await localStorage.getItem('name')
-                // const balance = localStorage.getItem('balance')
-                // if(!balance){
-                //   localStorage.setItem('balance', JSON.stringify(bal))                  
-                // }else{
-                //   setBal(parseInt(balance));
-                // }
-
                 if(user){
                   setUser(user.fullName)
                   toast.success('Welcome ' + user.firstName);
@@ -59,7 +50,9 @@ function Dashboard() {
         console.log('user exists')
       }
       const bals =await checkBalance(user.id);
+      if(bals.length > 0){
         setBal(parseInt(bals[0].amount))
+      }
       // console.log(bals)
     }
 
