@@ -19,6 +19,7 @@ const askAI =async (e)=>{
     }
     console.log(data);
     try{
+      // const response = await axios.post('http://localhost:3000/askai', data);
       const response = await axios.post('https://projectfx-server.onrender.com/askai', data);
       setDisplay(response.data.data.choices[0].text)
       setDisplay(response.data.data.choices[0].text)
