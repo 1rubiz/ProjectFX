@@ -4,6 +4,8 @@ const dotenv = require('dotenv').config()
 const cors = require ('cors')
 const PORT = process.env.PORT || 5000
 const app = express()
+const axios = require('axios');
+
 // const allowedOrigins = ['https://sunny-dango-c6e34e.netlify.app'];
 
 // app.use(cors({
@@ -30,47 +32,33 @@ app.listen(PORT, ()=>{
     console.log(`server running on port ${PORT}`.cyan.underline)
 })
 
-app.post('/askai', async (req, res)=>{
-        console.log(req.body);
-        const {prompt} = req.body;
-        const text ='Based on the concepts of trading i.e crpto, forex and stock '
-        // const answer = await askAi(text, prompt);
-        // console.log(answer);
-        // res.json({data:answer});
+app.post('/askai', async (req, res) => {
+    // console.log(req.body);
+    const { prompt } = req.body;
+    const text = 'Based on the concepts of trading i.e crypto, forex, and stock';
 
-        try{
+    try {
         const url = 'https://api.openai.com/v1/completions';
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer `+process.env.AI
-            },
-            body: JSON.stringify({
-
-                prompt: `${prompt } ${text}`,
-                max_tokens: 1000,
-                temperature: 0.8,
-                // stop: [ "?", "!"],
-                n: 1,
-                frequency_penalty: 0.2,
-                presence_penalty: 0.5,
-                model: 'text-davinci-003',
-                
-                best_of: 3,
-            })
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ` + process.env.AI
         };
-        
-        // Make the API request to Open Ai (gpt-3)
-        fetch(url, options)
-            .then(response => response.json())
-            .then(reply => {
-                console.log('asking....')
-               res.json({data: reply})
-            })
-            .catch(error => console.error(error));
-        } catch(err){
-            console.log(err)
-        }
-    
-    })
+        const data = {
+            prompt: `${prompt} ${text}`,
+            max_tokens: 1000,
+            temperature: 0.8,
+            n: 1,
+            frequency_penalty: 0.2,
+            presence_penalty: 0.5,
+            model: 'text-davinci-003',
+            best_of: 3,
+        };
+
+        const response = await axios.post(url, data, { headers });
+
+        console.log('asking....');
+        res.json({ data: response.data });
+    } catch (err) {
+        console.log(err);
+    }
+});
