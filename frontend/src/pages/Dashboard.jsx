@@ -21,7 +21,6 @@ function Dashboard() {
     const [stat, setStat] = useState(null);
     const navigate = useNavigate()
     const { user } = useUser()
-     // const {user} = useContext(UserContext);
      const [users, setUser] = useState('')
      const [loading, setLoading] = useState(false)
 
@@ -69,12 +68,13 @@ function Dashboard() {
   const handleDeposit = async () => {
     await user
     if(amount){
-        const calculatedResult = bal + amount;
+        const calculatedResult = parseInt(bal) + parseInt(amount);
         setBal(parseInt(calculatedResult));
         setStat(null)
         // localStorage.setItem('balance', JSON.stringify(calculatedResult))
         createdeposit(amount, user.id)
         const bals = await updateBalance(user.id, calculatedResult)
+        toast.success('$ '+amount+' successfully deposited');
         // return;
     }else{setErrs('input an amount')}
   }
@@ -89,6 +89,7 @@ function Dashboard() {
         createwithdrawal(amount, user.id)
         const bals = await updateBalance(user.id, calculatedResult)
         setStat(null)
+        toast.success('$ '+amount+ ' successfully wiithdrawn from account');
         // return;
       }else{
         setErrs('Withdraw amount exceed Account balance ')

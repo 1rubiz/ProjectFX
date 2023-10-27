@@ -28,7 +28,7 @@ export async function fetchFromSupabase() {
   const { data, error } = await supabase
     .from('users')
     .select();
-  console.log(data);
+  // console.log(data);
 }
 
 export async function createUser(email, u_id, name){
@@ -81,7 +81,7 @@ export async function getAccount(acc, u_id, id){
     .from(acc)
     .select('*')
     .eq(u_id, id)
-  console.log(data)
+  // console.log(data)
   return data;
 }
 

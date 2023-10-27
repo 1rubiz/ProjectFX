@@ -27,46 +27,6 @@ function App() {
 }
 
 
-// function App() {
-//   const [count, setCount] = useState(0)
-//   const [status, setStatus] = useState(false)
-//   const [user, setUser] = useState(null)
-//   const login =()=>{
-//     console.log('request to login')
-//   }
-//         // <AuthContext.Provider value={{login: setStatus, setUser:setUser }}>
-//   // <Nav/>
-// const clerkPubKey = import.meta.env.VITE_CLERK_KEY;
-// // console.log(clerkPubKey)
-//   if (!clerkPubKey) {
-//   throw new Error("Missing Publishable Key")
-// }
-
-
-//   return (
-//     <ClerkProvider publishableKey={clerkPubKey}>
-//     <BrowserRouter>
-//     <AuthContext.Provider value={{user: user, setUser: setUser}}>
-//       <NavBar/>
-//       <Routes>
-//         <Route path='/onboard' element={<Onboard/>}/>
-//         <Route path='/market' element={<Market/>} />
-//         <Route path='/' element={<Landing/>} />
-//         <Route path='/dashboard' element={<Dashboard/>}/>
-//         <Route path='/profile' element={<Profile/>}/>
-//         <Route path='/news' element={<News/>}/>
-//         <Route path='/inbox' element={<Inbox/>}/>
-//         <Route path='/cashier' element={<Cashier/>}/>
-//         <Route path='/report' element={<Report/>}/>
-//         <Route path='/settings' element={<Settings/>} />
-//       </Routes>
-//       <Footer/>
-//     </AuthContext.Provider>
-//     </BrowserRouter>
-//     </ClerkProvider>
-//   )
-// }
-
 export default App
 
 // bg-0D1321

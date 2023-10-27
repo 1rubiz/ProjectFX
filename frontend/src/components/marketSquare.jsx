@@ -4,6 +4,7 @@ import CryptoConverter from './cryptoConverter'
 import { checkBalance } from '../contexts/supabase'
 import { useUser } from '@clerk/clerk-react'
 
+
 export default function MarketSquare(){
 	const [fromSym, setFromSym] = useState('');
 	const [toSym, setToSym] = useState('');
@@ -61,39 +62,48 @@ export default function MarketSquare(){
 		<div>
 			<div className='w-[100%] flex flex-col justify-center items-center gap-5'>
 			<h2>Account balance : $ {bal}</h2>
-				<div>
-					<table className='border-[6px] border-white'>
-				        <tr className='bg-black border-2 border-white'>
-				            <th className={cells}>From</th>
-				            <th className={cells}>To</th>
-				            <th className={cells}>Exchange Rate</th>
-				            <th className={cells}>Previous Rate</th>
-				            <th className={cells}>Last updated</th>
-				        </tr>
-				        <tr>
-				            <td className={cells}>{from}/{fromSym}</td>
-				            <td className={cells}>{to}/{toSym}</td>
-				            <td className={cells}>{exchangeRate}</td>
-				            <td className={cells}>{previousClose}</td>
-				            <td className={cells}>{lastUpdated}</td>
-				        </tr>
+				<div className='overflow-x-auto'>
+					<table className='border-[6px] border-white text-[1.4vh] md:text-[2vh] w-full lg:w-5/6 xl:w-4/5'>
+						<thead>
+					        <tr className='bg-black border-2 border-white'>
+					            <th className={cells}>From</th>
+					            <th className={cells}>To</th>
+					            <th className={cells}>Exchange Rate</th>
+					            <th className={cells}>Previous Rate</th>
+					            <th className={cells}>Last updated</th>
+					        </tr>
+					     </thead>
+					   	<tbody>
+					        <tr>
+					            <td className={cells}>{to}/{fromSym}</td>
+					            <td className={cells}>{from}/{toSym}</td>
+					            <td className={cells}>{exchangeRate}</td>
+					            <td className={cells}>{previousClose}</td>
+					            <td className={cells}>{lastUpdated}</td>
+					        </tr>
+					     </tbody>
 				    </table>
 				</div>
-
-				<div className='flex flex-col justify-center items-center gap-3 md:flex-row mb-2 rounded-full shadow-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50'>
-						<select className='text-black' onChange={handleClick}>
-						<option>Select a Currency</option>
-							{data && (
-							data.map((item, i)=>{
-								return(
-								<option key={i} id={i}>{item.from_symbol}/{item.to_symbol} </option>
-								)
-							})
-							)}
-						</select>
-				</div>
+				<section className=''>
+					<div >
+						<div>
+							<div className='flex flex-col justify-center items-center gap-3 md:flex-row mb-2 rounded-full shadow-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50'>
+								<select className='text-black' onChange={handleClick}>
+								<option>Select a Currency</option>
+									{data && (
+									data.map((item, i)=>{
+										return(
+										<option key={i} id={i}>{item.from_symbol}/{item.to_symbol} </option>
+										)
+									})
+									)}
+										</select>
+							</div>
+						</div>
+						<CryptoConverter type={type} exchangeRate={exchangeRate} previousClose={previousClose} from={from+'('+fromSym+')'} to={to+'('+toSym+')'}/>
+					 </div>
+				</section>
 			</div>
-			<CryptoConverter type={type} exchangeRate={exchangeRate} previousClose={previousClose} from={from+'('+fromSym+')'} to={to+'('+toSym+')'}/>
 		</div>
 		)
 }
