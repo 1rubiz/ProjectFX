@@ -88,7 +88,7 @@ export default function MarketSquare(){
 					<div >
 						<div>
 							<div className='flex flex-col justify-center items-center gap-3 md:flex-row mb-2 rounded-full shadow-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50'>
-								<select className='text-black' onChange={handleClick}>
+								<select className='text-black bg-white' onChange={handleClick}>
 								<option>Select a Currency</option>
 									{data && (
 									data.map((item, i)=>{
