@@ -51,7 +51,7 @@ const askAI =async (e)=>{
 				placeholder='What do you wanna know ?'
         onChange={handleChange}
 			/>
-			<div className='min-h-[9vh] rounded-[8px] rounded-bl-[0px] text-[1.8vh] bg-white rounded-[5px] pl-1 text-left w-[100%] bg-white'>
+			<div className='min-h-[9vh] rounded-[8px] rounded-bl-[0px] text-[1.8vh] bg-white rounded-[5px] pl-1 text-left min-w-[100%] bg-white'>
 				<Writer message={display}
                     time={50}
                     customClass='text-[black]'/>				
