@@ -113,11 +113,11 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
         placeholder="Enter amount"
         value={amount}
         onChange={handleAmountChange}
-        className='rounded-full shadow-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-black mb-2'
+        className='rounded-full bg-white shadow-md py-2 px-3 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-black mb-2'
       />
       <div>
-      <button onClick={selectBuy} className='text-black mr-4'>Buy</button>
-      <button onClick={selectSell} className='text-black'>Sell</button>
+      <button onClick={selectBuy} className='text-black bg-white mr-4'>Buy</button>
+      <button onClick={selectSell} className='text-black bg-white'>Sell</button>
       
       </div>
       {
