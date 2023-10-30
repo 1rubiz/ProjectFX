@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useUser} from "@clerk/clerk-react";
 import { createTrade } from '../contexts/supabase'
 import Success from './success'
-import { checkBalance } from '../contexts/supabase'
+import { checkBalance, getWallet } from '../contexts/supabase'
 import toast, { Toaster } from 'react-hot-toast';
 
 function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
@@ -58,7 +58,6 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
           // setTimeout(, 3000)
       }else{
         setErrs('Account Balance is not sufficient for this purchase')
-        console.log('not buyable')
       }
     }else{
         setErrs('Select a trade')
@@ -66,21 +65,43 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
     
   }
 
-  const handleSell = () => {
-    
+  const handleSell = async () => {
+          if(errs){
+        console.log(errs)
+        toast.error(errs);
+      }else{
+        toast.success(to +' Successfully bought!!');
+      }
+      
   }
   const selectBuy =()=>{
     setPurchase(true)
     setTransaction('buy')
     const calculatedResult = amount * exchangeRate;
     setResult(calculatedResult);
+    console.log(result)
   }
 
-  const selectSell = ()=>{
+  const selectSell = async ()=>{
       setPurchase(true)
-      setTransaction('sell')
-      const calculatedResult = amount / exchangeRate;
-    setResult(calculatedResult);
+      setTransaction('sell');
+      if(amount <= 0){
+        setErrs('Select Amount')
+      }
+      // console.log(to[2])
+      if(!to[2]){
+        setErrs('Select Currency')
+      }else{
+        const wallet = await getWallet()
+      // console.log(wallet)
+      if(wallet.length < 0){
+        setErrs('You do not have this currency in your wallet')
+        toast.error('You do not have this currency in your wallet');
+      }
+      }
+    //   const calculatedResult = amount / exchangeRate;
+    // setResult(calculatedResult);
+    // console.log(result)
   }
 
 
@@ -113,13 +134,14 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
                             </div>
                             <div>
                             {
-                              (transaction === 'buy') ? (
+                              (transaction === 'buy') && (
                                 <button onClick={handleBuy} className='text-black bg-[lime]'>Buy</button>
-                              ) : (
+                              )}
+
+                              {
                                 (transaction === 'sell') && (
                                   <button onClick={handleSell} className='text-black bg-[blue]'>Sell</button>
                                 )
-                              )
                             }
                               <button onClick={handleClose} className='text-black bg-[red] ml-3'>Close</button>
                         </div>

@@ -25,13 +25,11 @@ export default function MarketSquare(){
 			console.log('searching...')
 			await user;
 			const newdata= await rate();
-			const { trends } =await newdata.data;
 			      const bals =await checkBalance(user.id);
 		      if(bals.length > 0){
 		        setBal(parseInt(bals[0].amount))
 		      }
-			// console.log(trends)
-			setData(trends);
+			setData(newdata);
 			console.log('done!')
 		}
 		getuser();
@@ -40,13 +38,13 @@ export default function MarketSquare(){
 	useEffect(()=>{
 		// console.log('changing')
 		if(selectedId){
-			setFromSym(data[selectedId].from_symbol)
-			setToSym(data[selectedId].to_symbol)
-			setTo(data[selectedId].to_currency_name)
-			setFrom(data[selectedId].from_currency_name)
-			setExchangeRate(data[selectedId].exchange_rate)
-			setPreviousClose(data[selectedId].previous_close)
-			setLastUpdated(data[selectedId].last_update_utc)
+			setFromSym('usd')
+			setToSym(data[selectedId].symbol)
+			setTo(data[selectedId].name)
+			setFrom('United States Dollers')
+			setExchangeRate(data[selectedId].current_price)
+			setPreviousClose(data[selectedId].high_24h)
+			setLastUpdated(data[selectedId].last_updated)
 		}
 	}, [selectedId]);
 
@@ -75,8 +73,8 @@ export default function MarketSquare(){
 					     </thead>
 					   	<tbody>
 					        <tr>
-					            <td className={cells}>{to}/{fromSym}</td>
-					            <td className={cells}>{from}/{toSym}</td>
+					            <td className={cells}>{from}</td>
+					            <td className={cells}>{to}</td>
 					            <td className={cells}>{exchangeRate}</td>
 					            <td className={cells}>{previousClose}</td>
 					            <td className={cells}>{lastUpdated}</td>
@@ -93,7 +91,7 @@ export default function MarketSquare(){
 									{data && (
 									data.map((item, i)=>{
 										return(
-										<option key={i} id={i}>{item.from_symbol}/{item.to_symbol} </option>
+										<option key={i} id={i}>{item.name}</option>
 										)
 									})
 									)}

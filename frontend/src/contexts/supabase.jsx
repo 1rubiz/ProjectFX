@@ -36,7 +36,6 @@ export async function createUser(email, u_id, name){
   if(val === 1){
     return;
   }
-  // const supabase = createClient(supabaseUrl, supabaseKey);
   if(val === 2){
     const { data, error } = await supabase
     .from('users')
@@ -54,6 +53,19 @@ export async function createUser(email, u_id, name){
     }
   }
           
+}
+
+export async function getWallet(id, name){
+  const { data, error } = await supabase
+  .from('wallet')
+    .select('*')
+    .eq('w_id', id)
+    .eq('name', name)
+    return data;
+}
+
+export async function setWallet(id, name, amount){
+
 }
 
 export async function createwithdrawal(amount, u_id){

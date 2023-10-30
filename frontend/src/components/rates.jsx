@@ -1,26 +1,28 @@
 import axios from 'axios';
 
-const options = {
-  method: 'GET',
-  url: 'https://real-time-finance-data.p.rapidapi.com/market-trends',
-  params: {
-    trend_type: 'CRYPTO',
-    country: 'us',
-    language: 'en'
-  },
-  headers: {
-    'X-RapidAPI-Key': import.meta.env.VITE_TRADE_API,
-    'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
-  }
-};
-
 export async function rate(){
   try {
-  const response = await axios.request(options);
-  // console.log(response.data);
+ const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+  params: {
+    vs_currency: 'usd',
+    order: 'market_cap_desc',
+    per_page: 100,
+    page: 1,
+    sparkline: false,
+    locale: 'en'
+  },
+  headers: {
+    'accept': 'application/json'
+  }
+})
+  
   return(response.data);
-} catch (error) {
+
+ } catch (error) {
   console.error(error);
   return(error);
 }
 }
+
+
+
