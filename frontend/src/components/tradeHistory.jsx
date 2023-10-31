@@ -2,14 +2,18 @@ import React, { useEffect, useState} from 'react';
 import { getTrade, checkUser } from '../contexts/supabase'
 import { useUser } from "@clerk/clerk-react";
 import fire from '/fire-logo.svg'
+import Loading from './loading';
 
 export default function TradeHistory() {
 
     const [data, setData]= useState(null);
     const { user } = useUser()
+    const cells = 'border-2 border-white p-1 md:p-2';
+    const [loading, setLoading] = useState(false);
+
 useEffect(()=>{
-// 
   const getData =async ()=>{
+    setLoading(true)
       await user;
       const verified = await checkUser(user.id);
       // console.log(verified);
@@ -23,50 +27,59 @@ useEffect(()=>{
         setData(newData)
       }
       }
+      setLoading(false)
     }
       getData();
 }, [])
 
   return (
     <div className=''>
+    {
+      loading && <Loading/>
+    }
           <div>
            <hr/>
-      
-           {
-                data ? (
-                data.map((item, i)=>{
-                  return(
-                    <div key={i} className='text-black m-4 flex flex-col gap-2 justify-center items-center'>
-                       <div class="bg-[#748CAB] rounded-lg shadow-md p-6  w-[80%]">
-                        <div class="flex items-center justify-between">
-                          <div class="flex items-center">
-                            <div class="h-8 w-8 p-1 bg-white rounded-full flex items-center justify-center text-sm font-semibold mr-2">
-                              <img src={fire} className='h-[30px]'/>
-                            </div>
-                            <div>
-                              <p class="text-black font-semibold text-lg">{item.id} </p>
-                              <p class="text-white text-sm">Trade Type : {item.type} </p>
-                            </div>
-                          </div>
-                          <div class="text-right">
-                            <p class="text-gray-800 text-2xl font-semibold">Amount : {item.amount} </p>
-                            <p class="text-white"> {item.exchange_rate} - Exchange Rate</p>
-                            <p class="text-white"> {item.previous_close} - Previous Exchange Rate</p>
-                          </div>
-                        </div>
-                        <div class="mt-4">
-                          <p class="text-white"> {item.from}  to  {item.to} </p>
-                          <p class="text-white">Account Balance:  {item.balance} </p>
-                        </div>
-                      </div>
-                </div>
-                  )
-                })
-                ) : (
-                  <p> No Trade History</p>
-                )
-              }
-          </div>
+           <div className='mt-3 flex justify-center items-center'>
+          <table className='border-[6px] border-white text-[1.2vh] md:text-[1.3vh] w-full lg:w-5/6 xl:w-4/5'>
+            <thead>
+                  <tr className='bg-black border-2 border-white bg-[#3E5C76] text-white'>
+                      <th className={cells}>ID</th>
+                      <th className={cells}>TYPE</th>
+                      <th className={`${cells} hidden md:block`}>FROM</th>
+                      <th className={cells}>TO</th>
+                      <th className={cells}>COST</th>
+                      <th className={cells}>Exchange Rate</th>
+                      <th className={`${cells} hidden md:block`}>BALANCE</th>
+                      <th className={cells}>Last updated</th>
+                  </tr>
+               </thead>
+              <tbody>
+                  {
+                      data ? (
+                      data.map((item, i)=>{
+                        const time = (item.created_at).split('T')[0];
+                        return(
+                          <tr key={i}>
+                            <td className={cells}>{item.id}</td>
+                            <td className={cells}>{item.type}</td>
+                            <td className={`${cells} hidden md:block`}>USD</td>
+                            <td className={cells}>{item.to}</td>
+                            <td className={cells}>{item.cost}</td>
+                            <td className={cells}>{item.exchange_rate}</td>
+                            <td className={`${cells} hidden md:block`}>{item.balance}</td>
+                            <td className={cells}>{time}</td>
+                        </tr>
+                        )
+                      })
+                      ) : (
+                        <p> No Trade History</p>
+                      )
+                  }
+                  
+               </tbody>
+            </table>
+        </div>
+       </div>
     </div>
   )
 }

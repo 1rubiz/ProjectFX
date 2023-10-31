@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {useUser} from "@clerk/clerk-react";
 import { createTrade } from '../contexts/supabase'
 import Success from './success'
-import { checkBalance, getWallet } from '../contexts/supabase'
+import { updateBalance, checkBalance, getWallet, setWallet } from '../contexts/supabase'
 import toast, { Toaster } from 'react-hot-toast';
+import Loading from './loading';
 
 function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
   const [amount, setAmount] = useState(0);
@@ -15,13 +16,16 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
   const [transaction, setTransaction] = useState('sell')
   const [errs, setErrs] = useState('')
   const [complete, setComplete] = useState(false)
+  const [userWallet, setUserWallet] = useState(null);
+  const [loading, setLoading] = useState(false)
 
-  const setTrade =async ()=>{
+  const setTrade =async (types, balance)=>{
     await user;
-    const tradestatus =await createTrade(user.id, type, amount, exchangeRate, previousClose, from, to, bal);
+    const tradestatus =await createTrade(user.id, types, amount, exchangeRate, previousClose, from, to, balance, result);
     console.log(tradestatus);
   }
   useEffect(() => {
+    setLoading(true)
       const getuser = async ()=>{
       console.log('searching...')
       await user;
@@ -29,6 +33,7 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
           if(bals.length > 0){
             setBal(parseInt(bals[0].amount))
           }
+          setLoading(false)
       // console.log(trends)
     }
     getuser();
@@ -43,43 +48,64 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
     setSuccess(false)
   }
 
-  const handleBuy = () => {
+  const handleBuy = async () => {
+    setLoading(true)
     if(previousClose !== 0){
         if(bal > result){
-          console.log('buyable')
-          setComplete(true)
-          setSuccess(true)
-          setTimeout(() => {
-              // console.log("Delayed for 1 second.");
-            setPurchase(false)
-            setSuccess(false)
-            }, "3000");
-          toast.success(to +' Successfully bought!!');
-          // setTimeout(, 3000)
+            if(amount > 0){
+              const newBal = (bal - parseInt(result))
+              await setWallet(user.id, to, amount)
+              setBal(newBal)
+              await setTrade('BUY', newBal)
+              await updateBalance(user.id, newBal)
+              setSuccess(true)
+              setTimeout(() => {
+                handleClose()
+                }, "3000");
+              toast.success(to +' Bought Successfully!!');
+            }else{
+                setErrs('Amount cannot be less than one(1)')      
+            }
       }else{
         setErrs('Account Balance is not sufficient for this purchase')
       }
     }else{
         setErrs('Select a trade')
       }
+      setLoading(false)
     
   }
 
   const handleSell = async () => {
+          setLoading(true)
           if(errs){
-        console.log(errs)
+        setErrs(errs)
         toast.error(errs);
       }else{
-        toast.success(to +' Successfully bought!!');
+        if(userWallet[0].amount >= amount){
+          const newBal = (bal + parseInt(result))
+          await setWallet(user.id, to, amount)
+          await setTrade('SELL', newBal)
+          await updateBalance(user.id, newBal)
+          setBal(newBal)
+          setSuccess(true)
+          setTimeout(() => {
+            handleClose()
+            }, "3000");
+          toast.success(to +' Sold Successfully!!');
+          console.log('sellable')
+        }else{
+          toast.error('Insufficient cryptocurrency in wallet');
+          setErrs('Insufficient cryptocurrency in wallet')
+        }
       }
-      
+  setLoading(false)    
   }
   const selectBuy =()=>{
     setPurchase(true)
     setTransaction('buy')
     const calculatedResult = amount * exchangeRate;
     setResult(calculatedResult);
-    console.log(result)
   }
 
   const selectSell = async ()=>{
@@ -88,25 +114,36 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
       if(amount <= 0){
         setErrs('Select Amount')
       }
-      // console.log(to[2])
       if(!to[2]){
         setErrs('Select Currency')
       }else{
-        const wallet = await getWallet()
-      // console.log(wallet)
-      if(wallet.length < 0){
-        setErrs('You do not have this currency in your wallet')
-        toast.error('You do not have this currency in your wallet');
-      }
-      }
-    //   const calculatedResult = amount / exchangeRate;
-    // setResult(calculatedResult);
-    // console.log(result)
-  }
+        const calculatedResult = amount * exchangeRate;
+      setResult(calculatedResult);
 
+        await getWallet(user.id, to)
+        .then((data)=>{
+          // console.log(data);
+          if(data.length > 0){
+              setUserWallet(data)
+          }else{
+            console.log('nothing')
+            console.log('You do not have this currency in your wallet')
+            toast.error('You do not have this currency in your wallet');
+          }
+        })
+        .catch((err)=> console.log(err))
+      }
+      
+  }
+const handleClick=(e)=>{
+  console.log(e.target.value)
+}
 
   return (
     <div>
+      { 
+        loading && <Loading/>
+      }
       <Toaster/>
       <input
         type="number"
@@ -125,6 +162,16 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
               <div className='absolute top-[20vh] left-0 h-[60vh] w-[100%] bg-white'>
                 <div className='relative'>
                     <div className='w-[100%] mt-[10vh] text-black font-bold flex flex-col justify-center items-center'>
+                        
+                      {
+                            (transaction === 'sell' && userWallet) && (
+                              <div>
+                                <h1>Wallet</h1>
+                                Currency : {userWallet[0].name}<br/>
+                                {userWallet[0].name} in Wallet: {userWallet[0].amount}
+                            </div>
+                            ) 
+                      }
                         {
                           !complete && (
                                 <div>

@@ -3,7 +3,7 @@ import {rate} from './rates'
 import CryptoConverter from './cryptoConverter'
 import { checkBalance } from '../contexts/supabase'
 import { useUser } from '@clerk/clerk-react'
-
+import Loading from './loading';
 
 export default function MarketSquare(){
 	const [fromSym, setFromSym] = useState('');
@@ -18,6 +18,7 @@ export default function MarketSquare(){
 	const [data, setData] = useState(null);
 	const [selectedId, setSelectedId] = useState(null);
 	const [bal, setBal] = useState(0);
+	const [loading, setLoading] = useState(false)
 
 	const { user } = useUser()
 	useEffect(()=>{
@@ -54,10 +55,12 @@ export default function MarketSquare(){
     const selectedOption = event.target.options[selectedIndex];
     const id = selectedOption.getAttribute('id');
     setSelectedId(id);
-    console.log(id)
 	}
 	return(
 		<div>
+		{
+	      loading && <Loading/>
+	    }
 			<div className='w-[100%] flex flex-col justify-center items-center gap-5'>
 			<h2>Account balance : $ {bal}</h2>
 				<div className='overflow-x-auto'>

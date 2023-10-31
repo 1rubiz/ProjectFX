@@ -2,17 +2,20 @@ import React, { useState, useEffect} from 'react';
 import CashierMsg from './cashiermsg'
 import { useUser } from '@clerk/clerk-react'
 import { getAccount } from '../contexts/supabase';
+import Loading from './loading';
 
 export default function Deposit() {
   const { user } = useUser();
   const [val, setVal] = useState(null)
   const [data, setData]= useState(null);
-
+  const [loading, setLoading] = useState(false)
     useEffect(()=>{
     const getDate =async ()=>{
+      setLoading(true)
       await user;
       const newData = await getAccount('deposit', 'd_id', user.id);
       setData(newData);
+      setLoading(false)
     }
     getDate();
   }, [])
@@ -26,14 +29,18 @@ export default function Deposit() {
 
   return (
     <div className='flex justify-center items-center'>
+    {
+      loading && <Loading/>
+    }
           <div className='w-[100%] md:w-[80%]'>
            <hr/>
             {
               (data) ? (
                 data.map((item, i)=>{
+                  const time = (item.created_at).split('T')[0];
                   return(
                     <div className='w-[100%] p-2 hover:opacity-50'  onClick={()=> handleDisplay(i)} key={i}>
-                      <CashierMsg type='deposit' _id={item.id} date={item.created_at} customColor='text-[lightGreen]' amount={item.amount}/>
+                      <CashierMsg type='deposit' _id={item.id} date={time} customColor='text-[lightGreen]' amount={item.amount}/>
                     </div>
                     )
                 })

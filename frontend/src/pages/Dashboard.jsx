@@ -27,32 +27,23 @@ function Dashboard() {
           const { getToken } = useAuth();
 
      useEffect(() => {
-      
-   // setLoading(true);
-  //Runs only on the first render
-      const verifyUser = async()=>{
+       setLoading(true);
+        const verifyUser = async()=>{
         await user;
-                if(user){
-                  setUser(user.fullName)
-                  toast.success('Welcome ' + user.firstName);
-
-                }
-
-
+        if(user){
+            setUser(user.fullName)
+            toast.success('Welcome ' + user.firstName);
+        }
       const verified = await checkUser(user.id);
-      console.log(verified);
       if(verified === 2){
         const userStatus =await createUser(user.emailAddresses[0].emailAddress, user.id, user.fullName)
         createBalance(user.id, 0.00);
-        // console.log(userStatus);
-      }else if(verified === 1){
-        console.log('user exists')
       }
       const bals =await checkBalance(user.id);
       if(bals.length > 0){
         setBal(parseInt(bals[0].amount))
       }
-      // console.log(bals)
+      setLoading(false)
     }
 
     verifyUser();
@@ -66,38 +57,36 @@ function Dashboard() {
   }
 
   const handleDeposit = async () => {
+    setLoading(true)
     await user
     if(amount){
         const calculatedResult = parseInt(bal) + parseInt(amount);
         setBal(parseInt(calculatedResult));
         setStat(null)
-        // localStorage.setItem('balance', JSON.stringify(calculatedResult))
         createdeposit(amount, user.id)
         const bals = await updateBalance(user.id, calculatedResult)
         toast.success('$ '+amount+' successfully deposited');
-        // return;
     }else{setErrs('input an amount')}
+    setLoading(false)
   }
 
   const handleWithdraw = async() => {
-    // await user
+    setLoading(true)
     if(amount){
         if(amount < bal){
           const calculatedResult = parseInt(bal) - parseInt(amount);
         setBal(parseInt(calculatedResult));
-        // localStorage.setItem('balance', JSON.stringify(calculatedResult));
         createwithdrawal(amount, user.id)
         const bals = await updateBalance(user.id, calculatedResult)
         setStat(null)
         toast.success('$ '+amount+ ' successfully wiithdrawn from account');
-        // return;
       }else{
         setErrs('Withdraw amount exceed Account balance ')
       }
     }else{
       setErrs('input an amount')
     }
-    
+    setLoading(false)
   }
 
   const handleClose = (e)=>{
@@ -113,7 +102,9 @@ function Dashboard() {
   return (
     <div className=' absolute top-0 left-0 min-h-screen w-[100%] text-[white] bg-[#0D1321]'>
     <div className={`${loading ? 'block' : 'hidden'}`}>
-    <Loading/>
+    {
+      loading && <Loading/>
+    }
     </div>
           <div className='mt-[10vh] flex flex-col-reverse md:flex-row justify-center md:gap-[25%] mb-2'>
                 <div className='text-[black] md:max-w-[47%]'>

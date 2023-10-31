@@ -65,7 +65,23 @@ export async function getWallet(id, name){
 }
 
 export async function setWallet(id, name, amount){
-
+  const coin =await getWallet(id, name)
+  if(coin.length > 0){
+    const { data, error } = await supabase
+    .from('wallet')
+    .update({amount: amount})
+      .eq('w_id', id)
+      .eq('name', name)
+       return(data)
+  }else{
+    const { data, error } = await supabase
+    .from('wallet')
+      .insert([
+        { w_id: id, name: name, amount: amount  }
+      ])
+      .select()
+       return(data)
+  }
 }
 
 export async function createwithdrawal(amount, u_id){
@@ -158,7 +174,7 @@ export async function getTrade(id) {
 }
 
 
-export async function createTrade(u_id, type, amount, exchange_rate, previous_close, from, to, balance){
+export async function createTrade(u_id, type, amount, exchange_rate, previous_close, from, to, balance, cost){
   // const supabase = createClient(supabaseUrl, supabaseKey);
   const { data, error } = await supabase
     .from('trade')
@@ -171,7 +187,8 @@ export async function createTrade(u_id, type, amount, exchange_rate, previous_cl
          from: from,
          to: to,
          balance: balance,
-         t_id: u_id }
+         t_id: u_id,
+         cost: cost }
       ])
       .select()
       if(error){
