@@ -50,7 +50,7 @@ app.post('/askai', async (req, res) => {
             n: 1,
             frequency_penalty: 0.2,
             presence_penalty: 0.5,
-            model: 'text-davinci-003',
+            model: 'gpt-3.5-turbo',
             best_of: 3,
         };
 
