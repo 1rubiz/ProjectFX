@@ -53,16 +53,16 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
     if(previousClose !== 0){
         if(bal > result){
             if(amount > 0){
-              await getWallet(user.id, to)
-                .then((data)=>{
+              //await getWallet(user.id, to)
+                //.then((data)=>{
                   // console.log(data);
-                  if(data.length > 0){
-                      let walletAmount = amount + parseInt(data[0].amount);
-                  }else{
-                      let walletAmount = amount;
-                  }
+                  //if(data.length > 0){
+                      //let walletAmount = amount + parseInt(data[0].amount);
+                 // }else{
+                      //let walletAmount = amount;
+                 // }
               const newBal = (bal - parseInt(result))
-              await setWallet(user.id, to, walletAmount)
+              await setWallet(user.id, to, amount)
               setBal(newBal)
               await setTrade('BUY', newBal)
               await updateBalance(user.id, newBal)
