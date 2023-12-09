@@ -17,6 +17,7 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
   const [errs, setErrs] = useState('')
   const [complete, setComplete] = useState(false)
   const [userWallet, setUserWallet] = useState(null);
+  const [buyWallet, setBuyWallet] = useState(0)
   const [loading, setLoading] = useState(false)
 
   const setTrade =async (types, balance)=>{
@@ -53,16 +54,8 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
     if(previousClose !== 0){
         if(bal > result){
             if(amount > 0){
-              //await getWallet(user.id, to)
-                //.then((data)=>{
-                  // console.log(data);
-                  //if(data.length > 0){
-                      //let walletAmount = amount + parseInt(data[0].amount);
-                 // }else{
-                      //let walletAmount = amount;
-                 // }
               const newBal = (bal - parseInt(result))
-              await setWallet(user.id, to, amount)
+              await setWallet(user.id, to, (parseInt(amount) + parseInt(buyWallet)))
               setBal(newBal)
               await setTrade('BUY', newBal)
               await updateBalance(user.id, newBal)
@@ -71,6 +64,7 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
                 handleClose()
                 }, "3000");
               toast.success(to +' Bought Successfully!!');
+              location.reload();
             }else{
                 setErrs('Amount cannot be less than one(1)')      
             }
@@ -102,7 +96,7 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
             handleClose()
             }, "3000");
           toast.success(to +' Sold Successfully!!');
-          console.log('sellable')
+          location.reload();
         }else{
           toast.error('Insufficient cryptocurrency in wallet');
           setErrs('Insufficient cryptocurrency in wallet')
@@ -110,11 +104,23 @@ function CryptoConverter({type, exchangeRate, previousClose, from, to}) {
       }
   setLoading(false)    
   }
-  const selectBuy =()=>{
+  const selectBuy = async ()=>{
     setPurchase(true)
     setTransaction('buy')
     const calculatedResult = amount * exchangeRate;
     setResult(calculatedResult);
+                await getWallet(user.id, to)
+                .then((data)=>{
+                    console.log(data);
+                    if(data.length > 0){
+                        // let walletAmount = amount + parseInt(data[0].amount);
+                      setBuyWallet(data[0].amount)
+                   }
+                        // else{
+                        // let walletAmount = amount;
+                   // }
+                 })
+                 .catch((err)=> console.log(err))
   }
 
   const selectSell = async ()=>{
