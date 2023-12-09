@@ -129,7 +129,7 @@ function Dashboard() {
             <div className='absolute top-[10vh] left-0 h-[70vh] z-10 bg-[#0D1321] border-2 p-2 w-[90%] pt-9'>
               <div className='flex justify-center items-center gap-3'>
                 $<input
-                  className='w-[30%] text-[2vh] p-2 h-[3vh] text-black bg-white'
+                  className='w-[30%] text-[2vh] p-2 h-[5vh] text-black bg-white'
                   placeholder='Input amount'
                   type='number'
                   onChange={handleAmountChange}
