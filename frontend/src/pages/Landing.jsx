@@ -54,7 +54,7 @@ export default function Landing() {
                 </div>
                 <p>Your Personal AI-Assited Crypto-Trainer </p>
             </motion.div>
-            <div className='text-[26px] font-bold p-4 mt-[2vh] text-white-900'>
+            <div className='text-sm font-bold p-4 mt-[2vh] text-white-900'>
               <motion.p
                     initial={{x: 100}}
                     whileInView={{x: 0}}
