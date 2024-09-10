@@ -68,7 +68,7 @@ export default function Landing() {
                     exit={{x: -100}}
                     transition={{duration: 2}}
                className='text-[22px] font-semibold mt-4 mb-2'>
-              Create a demo account and<br/>
+              Create a demo account and<br className='md:hidden'/>
               Start learning today!</motion.p>
               <Link to={urls}><motion.button
                     initial={{opacity: 0}}
