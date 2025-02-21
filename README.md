@@ -1,4 +1,4 @@
-# ProjectFX
+# LitFX
 
 AI assisted demo trading platform, with realtime trading data.
 
